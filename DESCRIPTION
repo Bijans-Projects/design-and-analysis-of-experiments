@@ -13,6 +13,7 @@ Imports:
     agridat,
     broom,
     BsMD,
+    countrycode,
     crosstable,
     DiagrammeR,
     emmeans,
@@ -27,6 +28,7 @@ Imports:
     pwr,
     reticulate,
     scidesignR,
+    skimr,
     tidyverse,
     yaml
 Suggests:

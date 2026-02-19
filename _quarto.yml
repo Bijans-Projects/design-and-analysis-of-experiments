@@ -1,23 +1,29 @@
-# NOTE: This project has fields auto-generated via a script
 project:
   type: website
-  pre-render: pre-render.R
   output-dir: docs
   preview:
     port: 4200
 
 website:
-  title: "AUTO-GENERATED: See NOTE at top of page"
+  title: !expr read.dcf("DESCRIPTION")[1,"Title"]
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - href: simulation-and-computation.qmd
+    - text: Home
+      href: index.qmd
+    - text: Exploration
+      href: examples-and-exercises.qmd  
+    - text: Assignments
+      menu:
+        - text: Simulation and Computation
+          href: simulation-and-computation.qmd
+    right:
+      - icon: github
+        href: https://github.com/Bijans-Projects/design-and-analysis-of-experiments
 
 format:
   html:
     theme:
-      - cosmo
-      - brand
+    - cosmo
+    - brand
     css: styles.css
     toc: true
