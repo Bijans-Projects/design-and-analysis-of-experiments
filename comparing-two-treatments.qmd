@@ -1,0 +1,391 @@
+---
+title: "Comparing Two Treatments"
+order: 2
+format: 
+    html:
+        code-fold: show
+        code-tools: true
+        smooth-scroll: true
+        anchor-sections: true
+---
+
+## Setup Stuff {.unnumbered}
+
+Let's get started!
+```{r}
+#| lst-label: a02-load-packages
+#| lst-cap: Loading Packages and R Setup
+#| output: false
+
+library(tidyverse)
+library(scidesignR)
+library(knitr)
+library(kableExtra)
+library(countrycode)
+library(skimr)
+
+set.seed(4240)
+```
+
+## Exercise 3.1 {#a03-ex-3-1}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Suppose $X_1 \sim N(10,25)$ and $X_2 \sim N(5,4)$ in a population. You randomly select 100 samples from the population and assign treatment $A$ to half of the sample and $B$ to the rest. Simulate the sample with treatment assignments and the covariates, $X_1$ and $X_2$. Compare the distributions of $X_1$ and $X_2$ in the two treatment groups. Repeat the simulation one hundred times. Do you observe consistent results? 
+:::
+
+```{r}
+
+
+N <- 100              # N experimental units
+N_A <- N / 2          # 
+N_B <- N - N_A
+
+
+# Pick N experimental units
+
+X <- tibble(x_i = 1:N)
+
+X_A <- X %>%
+    sample_n(N_A) %>% 
+    mutate(x_A = TRUE)
+X_A
+
+X_B <- X %>% 
+    anti_join(X_A, by = "x_i") %>% 
+    mutate(x_B = if_else(X_A$x_A, TRUE, FALSE))
+X_B
+
+X_i <- X %>% 
+    mutate(x_1 = rnorm(100, mean = 10, sd = 5)) %>% 
+    mutate(x_2 = rnorm(100, mean = 5, sd = 2)) %>% 
+    left_join(X_A, by = "x_i") %>% 
+    mutate(x_A = coalesce(x_A, FALSE)) %>% 
+    left_join(X_B, by = "x_i") %>% 
+    mutate(x_B = coalesce(x_B, FALSE)) %>% 
+    mutate(Treatment = if_else(x_A, "A", "B"))
+X_i
+
+summary_X_i <- X_i %>% 
+    group_by(Treatment) %>% 
+    summarize(
+        mean1 = mean(x_1),
+        median1 = median(x_1),
+        sd1 = sd(x_1),
+        mean2 = mean(x_2),
+        median2 = median(x_2),
+        sd2 = sd(x_2),
+        meanDiff = mean1 - mean2
+    )
+summary_X_i
+
+mean_difference_A_minus_B <- summary_X_i$mean1[1] - summary_X_i$mean1[2] 
+
+
+repeatSampling <- 100
+compare_means <- tibble(
+    X_i = 1:repeatSampling, 
+    mean1_difference_A_minus_B = 0,
+    mean2_difference_A_minus_B = 0)
+for (i in 1:repeatSampling) {
+
+    X <- tibble(x_i = 1:N)
+
+    X_A <- X %>%
+        sample_n(N_A) %>% 
+        mutate(x_A = TRUE)
+    #X_A
+
+    X_B <- X %>% 
+        anti_join(X_A, by = "x_i") %>% 
+        mutate(x_B = if_else(X_A$x_A, TRUE, FALSE))
+    #X_B
+
+    X_i <- X %>% 
+        mutate(x_1 = rnorm(100, mean = 10, sd = 5)) %>% 
+        mutate(x_2 = rnorm(100, mean = 5, sd = 2)) %>% 
+        left_join(X_A, by = "x_i") %>% 
+        mutate(x_A = coalesce(x_A, FALSE)) %>% 
+        left_join(X_B, by = "x_i") %>% 
+        mutate(x_B = coalesce(x_B, FALSE)) %>% 
+        mutate(Treatment = if_else(x_A, "A", "B"))
+    #X_i
+
+    summary_X_i <- X_i %>% 
+        group_by(Treatment) %>% 
+        summarize(
+            mean1 = mean(x_1),
+            median1 = median(x_1),
+            sd1 = sd(x_1),
+            mean2 = mean(x_2),
+            median2 = median(x_2),
+            sd2 = sd(x_2),
+            meanDiff = mean1 - mean2
+        )
+    #summary_X_i
+
+    mean1_difference_A_minus_B <- summary_X_i$mean1[summary_X_i$Treatment == "A"] - summary_X_i$mean1[summary_X_i$Treatment == "B"]
+    mean2_difference_A_minus_B <- summary_X_i$mean2[summary_X_i$Treatment == "A"] - summary_X_i$mean2[summary_X_i$Treatment == "B"]
+    compare_means$mean1_difference_A_minus_B[i] = mean1_difference_A_minus_B
+    compare_means$mean2_difference_A_minus_B[i] = mean2_difference_A_minus_B
+}
+
+X_1_hist <- hist(compare_means$mean1_difference_A_minus_B)
+X_1_mean <- mean(compare_means$mean1_difference_A_minus_B)
+X_1_sd <- sd(compare_means$mean1_difference_A_minus_B)
+
+X_2_hist <- hist(compare_means$mean2_difference_A_minus_B)
+X_2_mean <- mean(compare_means$mean2_difference_A_minus_B)
+X_2_sd <- sd(compare_means$mean2_difference_A_minus_B)
+
+X_1_mean
+X_2_mean
+
+X_1_sd
+X_2_sd
+
+```
+
+Yes, we observe consistent results. It almost appears that this follows a standard normal distribution.
+
+::: {.end-question}
+■
+:::
+
+## Exercise 3.2 {#a03-ex-3-2}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Identify *treatments* and *experimental units* in the following scenarios.
+:::
+
+### (a) City A {#a03-ex-3-2-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+City A would like to evaluate whether a new employment training program for the unemployed is more effective compared to the existing program. The City decides to run a pilot program for selected employment program applicants.
+:::
+
+Treatments
+: Existing Employment Training Program
+: New Employment Training Program
+
+Experimental Units
+: Individual unemployed applicants
+
+::: {.end-question}
+□
+:::
+
+### (b) Marketing Agency B {#a03-ex-3-2-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Marketing Agency B creates and places targeted advertisements on video-sharing platforms for its clients. The Agency decides to run an experiment to compare the effectiveness of placing advertisements before vs. during vs. after videos.
+:::
+
+Treatments
+: Placing advertisement before videos
+: Placing advertisement during videos
+: Placing advertisement after videos
+
+Experimental Units
+: Individuals targeted
+
+::: {.end-question}
+□
+:::
+
+### (c) Paul {#a03-ex-3-2-c}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Paul enjoys baking and finds a new recipe for chocolate chip cookies. Paul decides to test it by bringing cookies baked using his current recipe and the new recipe to his study group. Each member of the group blindly tastes each kind and provides their ratings.
+:::
+
+Treatments
+: Current chocolate chip cookie recipe
+: New chocholate chip cookie recipe
+
+Experimental Units
+: Individual tasting (each person $\times$ each recipe)
+
+::: {.end-question}
+■
+:::
+
+## Exercise 3.4 {#a03-ex-3-4}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Consider the scenario in Example 3.1, and suppose that an investigator only has enough fertilizer A to use on four plots. Answer the following questions.
+:::
+
+### (a) Individual {#a03-ex-3-4-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+What is the probability that an individual plot receives fertilizer A?
+:::
+
+$N_A = 4$, the number of experimental units assigned to treatment A  
+Assignment probability = $1/{{N}\choose{N_A}}$
+
+```{r}
+N <- 12
+N_A <- 4
+
+assignmentProbability <- 1 / choose(N, N_A)
+assignmentProbability
+```
+
+For plot $n_1$, how many times was it selected for fertilizer A? 
+
+
+
+$P(n_1 = A) =$ .... ? 
+
+If we fix plot 1 to A. Then the remaining 11 plots have ${11} \choose {3}$ ways of choosing the other A.
+Without the loss of generality, we have that the marginal probability will be 
+```{r}
+choose(11,3)
+choose(12,4)
+
+choose(11,3) / choose(12,4)
+
+```
+
+$$
+\begin{gather}
+    \frac{{N-1} \choose {N_A} - 1}{N \choose N_A} \\
+    = \frac{{11} \choose 3}{12 \choose 4} \\
+    = \frac{165}{495} \\
+    = \frac{1}{3}
+\end{gather}
+$$
+
+
+
+::: {.end-question}
+□
+:::
+
+### (b) Particular Treatment {#a03-ex-3-4-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+What is the probability of choosing the treatment assignment A, A, A, A, B, B, B, B, B, B, B, B?
+:::
+
+Assignment probability = 
+$$
+\begin{gather}
+    \frac{1}{{N}\choose{N_A}} \\
+    = \frac{1}{{12}\choose{4}} \\
+    = \frac{1}{495} \\
+    \approxeq 0.0020202
+\end{gather}
+$$
+
+::: {.end-question}
+■
+:::
+
+## Exercise 3.11 {#a03-ex-3-11}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Consider a randomized pair design with $n$ units where two treatments are randomly assigned to each unit, resulting in a pair of observations $(X_i, Y_i) \text{ for } i=1,...,n$ on each unit. Assume that $E[X_i] = \mu_X$, $E[Y_i] = \mu_Y$, and $\text{Var}(X_i) = \text{Var}(Y_i) = \sigma^2 \text{ for } i=1,...,n$. Alternatively, we may consider an unpaired design where we assign two independent treatment groups to $2n$ units.
+:::
+
+### (a) Ratio of Variances {#a03-ex-3-11-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Show that the ratio of the variances in the paired to the unpaired design is $1 - \rho$, where $\rho$ is the correlation between $X_i$ and $Y_i$.
+:::
+
+Let D be the paired (X - Y)
+Then 
+$$
+\begin{align}
+Var(D) & = Var(X - Y) \\
+       & = Var(X) + Var(Y) - 2Cov(X,Y) \\
+       & = \frac{1}{n}\left(\sigma_X^2 + \sigma_Y^2 - 2 \rho \sigma_X \sigma_Y \right) \\
+       & = \frac{1}{n}\left(2\sigma^2 - 2 \rho \sigma^2 \right)\\
+       & = \frac{2\sigma^2}{n}(1 - \rho)\\
+\end{align}
+
+$$
+
+$$
+\begin{align}
+Var(X - Y) & = \\
+       & = Var(X) + Var(Y) \\
+       & = \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y} \\
+       & = \frac{\sigma^2}{n} + \frac{\sigma^2}{n} \\
+       & = \frac{2\sigma^2}{n} 
+\end{align}
+
+$$
+
+
+$$
+\begin{align}
+A / B & = \\
+       & = \frac{
+             \frac{2\sigma^2}{n}(1 - \rho) }
+            {\frac{2\sigma^2}{n} } \\
+       & = 1-\rho    
+\end{align}
+
+$$
+
+
+
+::: {.end-question}
+□
+:::
+
+### (b) Precision Requirements {#a03-ex-3-11-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+If $\rho = 0.5$, how many subjects are required in the unpaired design to yield the same precision as the paired design?
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+## Exercise 3.12 {#a03-ex-3-12}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Suppose that two drugs A and B are to be tested on 12 subjects’ eyes. The drugs will be randomly assigned to the left eye or right eye based on the flip of a fair coin. If the coin toss is heads then a subject will receive drug A in their right eye. The coin was flipped 12 times and the following sequence of heads and tails was obtained:
+$$
+T \qquad
+T \qquad
+H \qquad
+T \qquad
+H \qquad
+T \qquad
+T \qquad
+T \qquad
+H \qquad
+T \qquad
+T \qquad
+H
+$$
+:::
+
+### (a) Treatment Allocation {#a03-ex-3-12-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Create a table that shows how the treatments will be allocated to the 12 subjects' left and right eyes.
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (b) Probability {#a03-ex-3-12-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+What is the probability of obtaining this treatment allocation?
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (c) Experimental Design {#a03-ex-3-12-c}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+What type of experimental design has been used to assign treatments to subjects? Explain.
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::

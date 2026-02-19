@@ -1,0 +1,17 @@
+## Exercise 2.3 {#a02-ex-2-3}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+### (a) Simple Random Sample Probability {#a01-ex-2-3-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+TODO: Pick one
+□
+■
+:::
