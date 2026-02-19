@@ -1,0 +1,1235 @@
+---
+title: "Simulation and Computation"
+sidebar: assignments
+order: 1
+toc: true
+toc-depth: 3
+format: 
+    html:
+        code-fold: true
+        smooth-scroll: true
+        anchor-sections: true
+---
+
+## Setup Stuff {.unnumbered}
+
+Let's get started!
+```{r}
+#| lst-label: lst-a01-load-packages
+#| lst-cap: Loading Packages and R Setup
+#| output: false
+library(tidyverse)
+library(scidesignR)
+library(knitr)
+library(kableExtra)
+library(countrycode)
+library(skimr)
+
+set.seed(4240)
+```
+
+## Exercise 2.3 {#a01-ex-2-3}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+In Section 2.3, 20 patients for Example 2.5 were randomly selected from a population of 25,000.
+:::
+ 
+### (a) Simple Random Sample Probability {#a01-ex-2-3-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Explain why the probability of choosing a random sample of 20 from 25,000 is 
+$$
+\frac{1} {25000 \choose 20}
+$$
+:::
+
+Let's start with smaller population size, 6, {A, B, C, D, E, F}.
+And, let's start with a smaller sample size, 1. We can pick one of {A}, {B}, {C}, {D}, {E}, or {F}. That is, there are 6 ways to have a sample of size 1. The probability of choosing a random sample of size 1 from a population of size 6 is 1/6.
+
+Let's expand to a sample size 2. We know that once an individual is added to our sample, they can't be picked again, and it doesn't matter what order the individuals are added to the sample. Then, these are all the possible ways that we could pick them: 
+{A, B}
+{A, C}
+{A, D}
+{A, E}
+{A, F}
+
+{B, C}
+{B, D}
+{B, E}
+{B, F}
+
+{C, D}
+{C, E}
+{C, F}
+
+{D, E}
+{D, F}
+
+{E, F}
+
+That is, there are 15 ways to pick a sample of size 2. The probability of choosing a random sample of size 2 from a population of size 6 is 1/15.
+
+We can recognize that the number of ways to pick a sample of size r from a population of size n is the binomial coefficient $\frac{n!}{(r!(n-r)!)}$ (i.e., "n choose r"). 
+
+::: {.end-question}
+□
+:::
+
+### (b) Simple Random Sample Probability with R {#a01-ex-2-3-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Use R to randomly select 4 patients from a total of 8 patients, and calculate the probability of choosing this random sample.
+:::
+
+Explored with R
+```{r}
+#| lst-label: lst-a01-ex-2-3-b
+#| lst-cap: Random Sample Probability
+#| output: false
+
+# Input Parameters
+populationSize <- 8
+sampleSize <- 4
+
+# Population Table
+patients <- tibble(id = 1:populationSize)
+# Pick a sample
+chosenRandomSample <- patients |>
+    sample_n(sampleSize)
+
+# How many random samples are possible?
+numberOfRandomSamples <- choose(populationSize, sampleSize)
+
+# Probability of choosing this particular random sample
+probabilityOfChosenRandomSample <- (1 / numberOfRandomSamples)
+
+# Results
+probabilityOfChosenRandomSampleRounded <- round(probabilityOfChosenRandomSample, 3)
+probabilityOfChosenRandomSampleRounded
+
+```
+
+Visualized with R
+
+``` {r}
+#| label: tbl-a01-ex-2-3-b
+#| tbl-cap: Randonly Generated Sample
+
+patients |> 
+    mutate(
+        "Selected for Sample" = if_else(id %in% chosenRandomSample$id, "TRUE", "FALSE")
+    ) |> 
+    kbl() |> 
+    kable_styling()
+
+```
+
+Therefore, the probability of choosing this random sample is $\frac{1}{`{r} numberOfRandomSamples`} \approx `{r} probabilityOfChosenRandomSampleRounded`$.
+
+::: {.end-question}
+■
+:::
+
+## Exercise 2.4 {#a01-ex-2-4}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+The treatment assignment displayed in Table 2.5 is from one treatment assignment out of ${20 \choose 10}$ possible random treatment assignments.
+:::
+
+### (a) All Possible Treatment Assignments {#a01-ex-2-4-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+R can be used to generate all possible combinations of 10 patients assigned to the treatment group using ```combn(covid_sample$id, 10)```. Use the command to generate the combinations and confirm that there are ${20 \choose 10}$ ways to generate the treatment assignments.
+:::
+
+```{r}
+# Variables
+covid_patientPopulationSize = 25000
+covid_treatmentSampleSize <- 20
+covid_activeTreatmentSampleSize <- 10 # the number of patients to be assigned to the active treatment (i.e., no placebo)
+
+#################################
+# The population of Covid Patients
+covid_patientPopulation <- tibble(id = 1:covid_patientPopulationSize)
+
+# The sample of covid patients that we will treat
+covid_treatmentSamplePatients <- covid_patientPopulation |> 
+    sample_n(covid_treatmentSampleSize)
+
+# Of the sample of patients we will treat, every possible combination of those that will receive the active treatment
+allPossibleActiveTreatmentSamplePatients <- covid_treatmentSamplePatients$id |> 
+    combn(covid_activeTreatmentSampleSize) |> 
+    as_tibble()
+
+expectedActiveTreatmentSampleCombinationsSize <- choose(covid_treatmentSampleSize, covid_activeTreatmentSampleSize)
+
+
+###########################
+covid_treatmentSamplePatients |> 
+    kbl(caption="COVID Patients to Receive Treatment Sample") |> 
+    kable_styling()
+
+ncol(allPossibleActiveTreatmentSamplePatients)
+expectedActiveTreatmentSampleCombinationsSize
+
+
+```
+
+::: {.end-question}
+□
+:::
+
+### (b) Treatment Counts Under Complete Randomization {#a01-ex-2-4-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+To generate the random array of treatment assignments in Table 2.5, R was used to randomly select 10 patients for the active treatment first and then assigned the placebo to the remaining 10. We can also generate a random treatment assignment vector by randomly selecting a column from the matrix of all possible treatment assignments created in part a. In R, randomly select a column and assign the first 10 to the active treatment and the rest to the placebo. Repeat a few times and discuss whether the procedure results in random assignments as desired. (Hint: You can use ```if_else(condition, true, false)``` inside ```mutate``` to return ```true``` when ```condition``` is met and ```false``` otherwise.)
+:::
+
+```{r}
+# Pick a random number between 1 and the total number of combinations to choose the patients that will get the active treatment
+randomColumnNumberFrom_allPossibleActiveTreatmentSamplePatients <- sample(1:ncol(allPossibleActiveTreatmentSamplePatients),1)
+# Get all the patient IDs that will get the active treatment
+covid_activeTreatmentSamplePatients <- allPossibleActiveTreatmentSamplePatients |> 
+    pull(randomColumnNumberFrom_allPossibleActiveTreatmentSamplePatients)
+
+
+########################################
+display <- covid_treatmentSamplePatients |> 
+    mutate(
+        treatmentAssignment = if_else(id %in% covid_activeTreatmentSamplePatients, "Active", "Placebo")
+    ) |> 
+    arrange(treatmentAssignment, id)
+
+index <- auto_index(display$treatmentAssignment)
+
+display |> 
+    kbl() |> 
+    pack_rows(index = index) |> 
+    kable_styling()
+
+```
+
+Our first step uses a simple random sample of 20 patients from our population to receive treatment.
+Using this sample, we generate all possible combinations of choosing 10 patients. (i.e., ${20 \choose 10} = 184,756$ possible combinations)
+Picking a random number from 1:184756 and giving those 10 patients the active treatment is still a simple random sample.
+We are always guaranteed to have exactly 20 randomly selected patients from the population, and exactly 10 of those will be randomly selected to receive the active treatment.
+This proceudre does result in random assignments as desired.
+
+::: {.end-question}
+□
+:::
+
+### (c) Comparison to Independent Assignment {#a01-ex-2-4-c}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Another scheme we may consider is to assign ```TRT``` or ```PLA``` to each patient with equal probabilities independently. Implement the procedure in R. Repeat a few times and discuss whether the procedure results in random assignments as desired.
+:::
+
+```{r}
+
+# "Equal Probability Assuming Independence"
+equalProbabilty <- sample(c("TRT","PLA"), size = covid_treatmentSampleSize, replace = TRUE)
+
+# Assign TRT or PLA to each patient independently
+covid_treatmentSamplePatients |> 
+    mutate(
+        treatmentAssignment = sample(c("TRT","PLA"), size = covid_treatmentSampleSize, replace = TRUE)
+    ) |> 
+    select(treatmentAssignment) |> 
+    group_by(treatmentAssignment) |> 
+    summarize(n = n()) |> 
+    kbl() |> 
+    kable_styling()
+    
+## TODO: run a loop and document the distribution ... good to plot it as well. 
+df <- data.frame(id = 1:100, trialTRT = NA)
+for (trial in 1:100) {
+    currentTrial <- covid_treatmentSamplePatients |> 
+    mutate(
+        treatmentAssignment = sample(c("TRT","PLA"), size = covid_treatmentSampleSize, replace = TRUE)
+    ) |> 
+    select(treatmentAssignment) |> 
+    group_by(treatmentAssignment) |> 
+    summarize(n = n()) 
+
+    df$trialTRT[trial] <- currentTrial$n[currentTrial$treatmentAssignment=="TRT"]
+}
+
+dict <- data.frame(
+    TRT = 0:20,
+    n = 0
+)
+for (i in 1:100) {
+    currentValue <- df[i,]$trialTRT
+    dict[dict$TRT==currentValue,]$n <- dict[dict$TRT==currentValue,]$n + 1
+}
+
+df |> 
+    group_by(TRT = trialTRT) |> 
+    select(TRT) |> 
+    summarise(n = n())
+
+dict |> 
+    ggplot(aes(
+        x = factor(TRT),
+        y = n
+        )) +
+    geom_col() +
+    geom_vline(xintercept = 11)
+
+```
+
+::: {.end-question}
+□
+:::
+
+### (d) Alternatives {#a01-ex-2-4-d}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Can you think of another procedure in R for randomly assigning 10 patients to active treatment? Implement your own procedure in R to verify the procedure results in random assignments.
+:::
+
+```{r}
+covid_treatmentSamplePatients |> 
+    arrange(id) |> ### Obviously when this step is added, it won't be random.
+    mutate(treatmentAssignment = if_else(row_number(id) <= covid_activeTreatmentSampleSize, "TRT", "PLA"))
+
+
+newDict <- data.frame(
+    id = 0,
+    n = 0
+)
+
+for(i in 1:1000) {
+    this_covid_treatmentSamplePatients <- covid_patientPopulation |> 
+        sample_n(covid_treatmentSampleSize) |> 
+        arrange(id) |> 
+        mutate(treatmentAssignment = if_else(row_number(id) <= covid_activeTreatmentSampleSize, "TRT", "PLA"))
+
+
+}
+
+
+```
+
+::: {.end-question}
+■
+:::
+
+## Exercise 2.11 {#a01-ex-2-11}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+A chemist has seven light objects to weigh on a balance pan scale. The standard deviation of each weighing is denoted by $\sigma$. In a 1935 paper, Frank Yates suggested an improved technique by weighing all seven objects together, and also weighing them in groups of three. The groups are chosen so that each object is weighed four times altogether, twice with any other object and twice without it.
+
+Let $y_1,...,y_8$ be the readings from the scale so that the equations for determining the unknown weights, $\beta_1,...,\beta_7$, are
+
+<!-- Commented out because it's not in the textbook - but it's a nice way to visualize which beta_i's are in which y_i's
+$$\begin{vmatrix}
+    y_1 \\
+    y_2 \\
+    y_3 \\
+    y_4 \\
+    y_5 \\
+    y_6 \\
+    y_7 \\
+    y_8  
+\end{vmatrix}
+=
+\begin{vmatrix}
+    \beta_1 & \beta_2 & \beta_3 & \beta_4 & \beta_5 & \beta_6 & \beta_7 & \epsilon_1 \\
+    \beta_1 & \beta_2 & \beta_3 &         &         &         &         & \epsilon_2 \\
+    \beta_1 &         &         & \beta_4 & \beta_5 &         &         & \epsilon_3 \\
+    \beta_1 &         &         &         &         & \beta_6 & \beta_7 & \epsilon_4 \\
+            & \beta_2 &         & \beta_4 &         & \beta_6 &         & \epsilon_5 \\
+            & \beta_2 &         &         & \beta_5 &         & \beta_7 & \epsilon_6 \\
+            &         & \beta_3 & \beta_4 &         &         & \beta_7 & \epsilon_7 \\
+            &         & \beta_3 &         & \beta_5 & \beta_6 &         & \epsilon_8
+\end{vmatrix}
+$$ 
+-->
+
+
+
+$$
+\begin{align*}
+y_1 &= \beta_1 + \beta_2 + \beta_3 + \beta_4 + \beta_5 + \beta_6 + \beta_7 + \epsilon_1 \\
+y_2 &= \beta_1 + \beta_2 + \beta_3 + \epsilon_2 \\
+y_3 &= \beta_1 + \beta_4 + \beta_5 + \epsilon_3 \\
+y_4 &= \beta_1 + \beta_6 + \beta_7 + \epsilon_4 \\
+y_5 &= \beta_2 + \beta_4 + \beta_6 + \epsilon_5 \\
+y_6 &= \beta_2 + \beta_5 + \beta_7 + \epsilon_6 \\
+y_7 &= \beta_3 + \beta_4 + \beta_7 + \epsilon_7 \\
+y_8 &= \beta_3 + \beta_5 + \beta_6 + \epsilon_8
+\end{align*}
+$$
+
+where the $\epsilon_i,i=1,...,8$ are independent errors.
+
+Hotelling suggested modifying Yates’ procedure by placing in the other pan of the scale those of the objects not included in one of his weighings. In other words if the first three objects are to be weighed, then the remaining four objects would be placed in the opposite pan.
+:::
+
+### (a) Yates' Procedure {#a01-ex-2-11-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Write Yates’ procedure in matrix form and find the least squares estimates of β.
+:::
+
+Yates' procedure can be written using the matrix form:
+
+$$
+y = X\beta + \epsilon
+$$
+$$
+\begin{pmatrix}
+    y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6 \\ y_7 \\ y_8
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 1 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 1 & 1 \\ 
+    0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 1 & 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+    \beta_1 \\ \beta_2 \\ \beta_3 \\ \beta_4 \\ \beta_5 \\ \beta_6 \\ \beta_7
+\end{pmatrix}
++
+\begin{pmatrix}
+    \epsilon_1 \\ \epsilon_2 \\ \epsilon_3 \\ \epsilon_4 \\
+    \epsilon_5 \\ \epsilon_6 \\ \epsilon_7 \\ \epsilon_8
+\end{pmatrix}
+$$
+
+<!-- 
+$$
+\overset{\vphantom{(n \times k)}}{y}_{(n \times 1)}
+=
+\overset{\vphantom{(n \times k)}}{X}_{(n \times k)}
+\overset{\vphantom{(n \times k)}}{\beta}_{(k \times 1)}
++
+\overset{\vphantom{(n \times k)}}{\epsilon}_{(n \times 1)}
+$$
+
+$$\begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    y_3 \\
+    y_4 \\
+    y_5 \\
+    y_6 \\
+    y_7 \\
+    y_8
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 1 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 1 & 1 \\ 
+    0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 1 & 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+    \beta_1 \\
+    \beta_2 \\
+    \beta_3 \\
+    \beta_4 \\
+    \beta_5 \\
+    \beta_6 \\
+    \beta_7
+\end{pmatrix}
++
+\begin{pmatrix}
+    \epsilon_1 \\
+    \epsilon_2 \\
+    \epsilon_3 \\
+    \epsilon_4 \\
+    \epsilon_5 \\
+    \epsilon_6 \\
+    \epsilon_7 \\
+    \epsilon_8
+\end{pmatrix}
+$$ 
+-->
+
+```{r}
+
+Yates <- matrix(
+    c(
+    1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0, 0,
+    1, 0, 0, 1, 1, 0, 0,
+    1, 0, 0, 0, 0, 1, 1,
+    0, 1, 0, 1, 0, 1, 0,
+    0, 1, 0, 0, 1, 0, 1,
+    0, 0, 1, 1, 0, 0, 1,
+    0, 0, 1, 0, 1, 1, 0
+  ),
+  nrow = 8,
+  ncol = 7,
+  byrow = TRUE
+)
+
+# X
+X <- Yates
+X
+
+# X'X
+Y <- t(X) %*% X
+Y
+
+# (X'X)^-1
+W <- solve(Y)
+W
+
+# (X'X)^-1 * X'
+A <- W %*% t(X)
+A
+
+
+```
+
+Let $X$ be the **design matrix**, where each row $i$ corresponds to an individual instance of weighing, and where each column $j$ represents a "light object".
+
+$$
+X = \begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 0 & 0 & 0 & 0 \\
+    1 & 0 & 0 & 1 & 1 & 0 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 1 & 1 \\ 
+    0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 1 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 1 & 1 & 0
+\end{pmatrix}
+$$
+
+Then each entry in the design matrix is defined as
+
+$$
+x_{ij} = \begin{cases}
+    1 &\text{object } j \text{ is on the scale in weighing } i \\
+    0 &\text{object } j \text{ is not included in weighing } i
+\end{cases}
+$$
+
+Then, it follows that a column of $X$ is the **participation pattern** of one object across all weighings. For example Object 1 is in Weighing 1, 2, 3, and 4.
+
+And so the **normal matrix** is:
+
+$$
+X^{T}X = \begin{pmatrix}
+    4 & 2 & 2 & 2 & 2 & 2 & 2 \\
+    2 & 4 & 2 & 2 & 2 & 2 & 2 \\
+    2 & 2 & 4 & 2 & 2 & 2 & 2 \\
+    2 & 2 & 2 & 4 & 2 & 2 & 2 \\
+    2 & 2 & 2 & 2 & 4 & 2 & 2 \\
+    2 & 2 & 2 & 2 & 2 & 4 & 2 \\
+    2 & 2 & 2 & 2 & 2 & 2 & 4
+\end{pmatrix}
+$$
+
+
+Which clearly results in each row $j$ and each column $k$ both representing an object, and the $(j,k)$ entry is the number of weighings that include both objects as defined by:
+
+$$
+(X^{T}X)_{jk} = \sum_{i=1}^{8}x_{ij}x_{ik}
+$$
+
+It is clear to see that when $j = k$ the object has been in 4 weighings - this is true for every object.
+It is also clear to see that when $j \not = k$ that the objects are in exactly 2 weighings with each other - this is also true for every pair of objects.
+
+Therefore, our interpretations are that:
+
+- the diagonal represents how well each object is measured individually, and 
+- the off-diagonal represents how entangled pairs of objects are
+
+We continue with the **inverse normal matrix**, which helps us better understand the unvertainty of the design.
+
+$$
+(X^\top X)^{-1}
+=
+\frac{1}{16}
+\begin{pmatrix}
+ 7 & -1 & -1 & -1 & -1 & -1 & -1 \\
+-1 &  7 & -1 & -1 & -1 & -1 & -1 \\
+-1 & -1 &  7 & -1 & -1 & -1 & -1 \\
+-1 & -1 & -1 &  7 & -1 & -1 & -1 \\
+-1 & -1 & -1 & -1 &  7 & -1 & -1 \\
+-1 & -1 & -1 & -1 & -1 &  7 & -1 \\
+-1 & -1 & -1 & -1 & -1 & -1 &  7
+\end{pmatrix}
+$$
+
+As expected, we see symmetry and our interpretations are:
+
+- the diagonal represents the noise of each individual objects; the higher the value the harder to estimate (i.e., relative variance) 
+  - "How much estimation uncertainty object j gets per unit of measurement noise"
+- the off-diagonal represents the entanglement between objects and how uncertainty is shared
+
+$$
+\text{Cov}(\hat{\beta}_j,\hat{\beta}_k) = -\frac{\sigma^2}{16}
+$$
+
+We then proceed to the **least-squares operator**
+
+$$
+(X^\top X)^{-1}X^\top
+=
+\frac{1}{16}
+\begin{pmatrix}
+1 & 5 & 5 & 5 & -3 & -3 & -3 & -3 \\
+1 & 5 & -3 & -3 & 5 & 5 & -3 & -3 \\
+1 & 5 & -3 & -3 & -3 & -3 & 5 & 5 \\
+1 & -3 & 5 & -3 & 5 & -3 & 5 & -3 \\
+1 & -3 & 5 & -3 & -3 & 5 & -3 & 5 \\
+1 & -3 & -3 & 5 & 5 & -3 & -3 & 5 \\
+1 & -3 & -3 & 5 & -3 & 5 & 5 & -3
+\end{pmatrix}
+$$
+
+Which, when multiplied by $\underset{n \times 1}{y}$ gives us our least squares estimators:
+
+<!-- I prefer the factored version below :-)
+$$
+\hat{\beta}_1 =
+\frac{1}{16} y_1
++ \frac{5}{16} y_2
++ \frac{5}{16} y_3
++ \frac{5}{16} y_4
+- \frac{3}{16} y_5
+- \frac{3}{16} y_6
+- \frac{3}{16} y_7
+- \frac{3}{16} y_8
+$$
+$$
+\hat{\beta}_2 =
+\frac{1}{16} y_1
++ \frac{5}{16} y_2
+- \frac{3}{16} y_3
+- \frac{3}{16} y_4
++ \frac{5}{16} y_5
++ \frac{5}{16} y_6
+- \frac{3}{16} y_7
+- \frac{3}{16} y_8
+$$
+$$
+\hat{\beta}_3 =
+\frac{1}{16} y_1
++ \frac{5}{16} y_2
+- \frac{3}{16} y_3
+- \frac{3}{16} y_4
+- \frac{3}{16} y_5
+- \frac{3}{16} y_6
++ \frac{5}{16} y_7
++ \frac{5}{16} y_8
+$$
+$$
+\hat{\beta}_4 =
+\frac{1}{16} y_1
+- \frac{3}{16} y_2
++ \frac{5}{16} y_3
+- \frac{3}{16} y_4
++ \frac{5}{16} y_5
+- \frac{3}{16} y_6
++ \frac{5}{16} y_7
+- \frac{3}{16} y_8
+$$
+$$
+\hat{\beta}_5 =
+\frac{1}{16} y_1
+- \frac{3}{16} y_2
++ \frac{5}{16} y_3
+- \frac{3}{16} y_4
+- \frac{3}{16} y_5
++ \frac{5}{16} y_6
+- \frac{3}{16} y_7
++ \frac{5}{16} y_8
+$$
+$$
+\hat{\beta}_6 =
+\frac{1}{16} y_1
+- \frac{3}{16} y_2
+- \frac{3}{16} y_3
++ \frac{5}{16} y_4
++ \frac{5}{16} y_5
+- \frac{3}{16} y_6
+- \frac{3}{16} y_7
++ \frac{5}{16} y_8
+$$
+$$
+\hat{\beta}_7 =
+\frac{1}{16} y_1
+- \frac{3}{16} y_2
+- \frac{3}{16} y_3
++ \frac{5}{16} y_4
+- \frac{3}{16} y_5
++ \frac{5}{16} y_6
++ \frac{5}{16} y_7
+- \frac{3}{16} y_8
+$$ 
+-->
+
+$$
+\hat{\beta}_1
+= \frac{1}{16}
+\bigl(
+y_1
++ 5y_2
++ 5y_3
++ 5y_4
+- 3y_5
+- 3y_6
+- 3y_7
+- 3y_8
+\bigr)
+$$
+$$
+\hat{\beta}_2
+= \frac{1}{16}
+\bigl(
+y_1
++ 5y_2
+- 3y_3
+- 3y_4
++ 5y_5
++ 5y_6
+- 3y_7
+- 3y_8
+\bigr)
+$$
+
+$$
+\hat{\beta}_3
+= \frac{1}{16}
+\bigl(
+y_1
++ 5y_2
+- 3y_3
+- 3y_4
+- 3y_5
+- 3y_6
++ 5y_7
++ 5y_8
+\bigr)
+$$
+
+$$
+\hat{\beta}_4
+= \frac{1}{16}
+\bigl(
+y_1
+- 3y_2
++ 5y_3
+- 3y_4
++ 5y_5
+- 3y_6
++ 5y_7
+- 3y_8
+\bigr)
+$$
+
+$$
+\hat{\beta}_5
+= \frac{1}{16}
+\bigl(
+y_1
+- 3y_2
++ 5y_3
+- 3y_4
+- 3y_5
++ 5y_6
+- 3y_7
++ 5y_8
+\bigr)
+$$
+
+$$
+\hat{\beta}_6
+= \frac{1}{16}
+\bigl(
+y_1
+- 3y_2
+- 3y_3
++ 5y_4
++ 5y_5
+- 3y_6
+- 3y_7
++ 5y_8
+\bigr)
+$$
+
+$$
+\hat{\beta}_7
+= \frac{1}{16}
+\bigl(
+y_1
+- 3y_2
+- 3y_3
++ 5y_4
+- 3y_5
++ 5y_6
++ 5y_7
+- 3y_8
+\bigr)
+$$
+
+
+::: {.end-question}
+□
+:::
+
+### (b) Hotelling's Procuedure {#a01-ex-2-11-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Write Hotelling’s procedure in matrix form
+:::
+
+Hotelling's procedure can be written using the matrix form:
+
+$$
+y = X\beta + \epsilon
+$$
+$$
+\begin{pmatrix}
+    y_1 \\ y_2 \\ y_3 \\ y_4 \\ y_5 \\ y_6 \\ y_7 \\ y_8
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+    1 & -1 & -1 & 1 & 1 & -1 & -1 \\ 
+    1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+    -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+    -1 & 1 & -1 & -1 & 1 & -1 & 1 \\
+    -1 & -1 & 1 & 1 & -1 & -1 & 1 \\
+    -1 & -1 & 1 & -1 & 1 & 1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+    \beta_1 \\ \beta_2 \\ \beta_3 \\ \beta_4 \\ \beta_5 \\ \beta_6 \\ \beta_7
+\end{pmatrix}
++
+\begin{pmatrix}
+    \epsilon_1 \\ \epsilon_2 \\ \epsilon_3 \\ \epsilon_4 \\
+    \epsilon_5 \\ \epsilon_6 \\ \epsilon_7 \\ \epsilon_8
+\end{pmatrix}
+$$
+
+Let $Z$ be the **design matrix** for Hotteling's procedure, where each row $i$ corresponds to an individual instance of weighing, and where each column $j$ represents a "light object".
+
+$$
+Z = \begin{pmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+    1 & -1 & -1 & 1 & 1 & -1 & -1 \\ 
+    1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+    -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+    -1 & 1 & -1 & -1 & 1 & -1 & 1 \\
+    -1 & -1 & 1 & 1 & -1 & -1 & 1 \\
+    -1 & -1 & 1 & -1 & 1 & 1 & -1
+\end{pmatrix}
+$$
+
+Then each entry in the design matrix is defined as
+
+$$
+z_{ij} = \begin{cases}
+    1 &\text{object } j \text{ is on the left pan of the scale in weighing } i \\
+    -1 &\text{object } j \text{ is on the right pan of the scale in weighing } i \\
+\end{cases}
+$$
+
+::: {.end-question}
+□
+:::
+
+### (c) Variance Comparison {#a01-ex-2-11-c}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Find the variance of a weight using Yates’ and Hotelling’s procedures.
+:::
+
+As we already have
+$$
+y = X\beta + \epsilon, \qquad \mathbb{E}[\epsilon]=0, \qquad \text{Var}(\epsilon)=\sigma^2I,
+$$
+
+and we've already computed the least squares estimator
+
+$$
+\hat{\beta} = (X^{T}X)^{-1}X^{T}y
+$$
+
+and we've already computed the variance-covariance matrix
+
+$$
+\text{Var}(\hat{\beta})=\sigma^2(X^{T}X)^{-1}
+$$
+
+Thus the diagonal entries of the variance covariance matrix are the variances $\text{Var}(\hat{\beta_j})$
+
+For Yates, we've already done this
+
+$$
+\text{Var}(\hat{\beta_j}) = \sigma^2\frac{7}{16} \quad \text{for all } j = 1,...,7
+$$
+
+For Hotelling we will follow the same steps as we did previously (i.e., design matrix --> normal matrix --> inverse normal matrix)
+
+```{r}
+
+Hotelling <- matrix(
+    c(
+    1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, -1, -1, -1, -1,
+    1, -1, -1, 1, 1, -1, -1,
+    1, -1, -1, -1, -1, 1, 1,
+    -1, 1, -1, 1, -1, 1, -1,
+    -1, 1, -1, -1, 1, -1, 1,
+    -1, -1, 1, 1, -1, -1, 1,
+    -1, -1, 1, -1, 1, 1, -1
+  ),
+  nrow = 8,
+  ncol = 7,
+  byrow = TRUE
+)
+
+# Z (i.e., Design Matrix)
+Z <- Hotelling
+Z
+
+# Z'Z (i.e., ZY; Normal Matrix)
+ZY <- t(Z) %*% Z
+ZY
+
+# (Z'Z)^-1 (i.e., ZW; Inverse Normal Matrix)
+ZW <- solve(ZY)
+ZW
+
+# (Z'Z)^-1 * Z' (i.e., ZA; Least-Squares Operator)
+ZA <- ZW %*% t(Z)
+ZA
+
+```
+
+$$
+\begin{align}
+    Z &= \begin{pmatrix}
+        1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+        1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+        1 & -1 & -1 & 1 & 1 & -1 & -1 \\ 
+        1 & -1 & -1 & -1 & -1 & 1 & 1 \\ 
+        -1 & 1 & -1 & 1 & -1 & 1 & -1 \\
+        -1 & 1 & -1 & -1 & 1 & -1 & 1 \\
+        -1 & -1 & 1 & 1 & -1 & -1 & 1 \\
+        -1 & -1 & 1 & -1 & 1 & 1 & -1
+    \end{pmatrix}
+\\
+    Z^{T}Z &= \begin{pmatrix}
+        8 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 8 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 8 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 8 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 8 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 8 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 8
+    \end{pmatrix}
+\\
+    (Z^\top Z)^{-1}
+    &=
+    \frac{1}{8}
+    \begin{pmatrix}
+        1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 0 & 0 & 0 & 1
+    \end{pmatrix}
+\end{align}
+$$
+
+Therefore
+
+$$
+\text{Var}(\hat{\beta_j})=\frac{\sigma^2}{8} \quad \text{for all } j = 1,...,7
+$$
+
+::: {.end-question}
+□
+:::
+
+### (d) Recommendation {#a01-ex-2-11-d}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+If the chemist wanted estimates of the weights with the highest precision, then which procedure (Yates or Hotelling) would you recommend that the chemist use to weigh objects? Explain your reasoning.
+:::
+
+To keep the estimates of the objects as precise as possible, we want the procedure with the lowest variance, which would be Hotelling's. 
+
+::: {.end-question}
+■
+:::
+
+## Exercise 2.12 {#a01-ex-2-12}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+Does life satisfaction change by region over time? Use the lifesat_childmort data from Example 2.15 to explore this question.
+:::
+
+``` {r}
+#| label: Quick audit (raw data)
+#| echo: true
+#| output: true
+
+audit_raw <- lifesat_childmort |>
+  summarise(
+    n_rows = n(),
+    n_lifesat = sum(!is.na(LifeSatisfaction)),
+    pct_lifesat_missing = mean(is.na(LifeSatisfaction)) * 100
+  )
+
+audit_raw
+```
+
+``` {r}
+#| label: Data cleansing
+#| echo: true
+#| output: true
+
+cleanData_lifesat_childmort <- lifesat_childmort |>
+  filter(!is.na(LifeSatisfaction))
+
+cleanData2_lifesat_childmort <- cleanData_lifesat_childmort |>
+  mutate(
+    Continent2 = suppressWarnings(
+      countrycode(`Country Code`, origin = "iso3c", destination = "continent")
+    ),
+    Continent2 = factor(Continent2),
+    Year_f = factor(Year)
+  ) |>
+  filter(!is.na(Continent2)) |>
+  select(Continent2, Year, Year_f, LifeSatisfaction)
+
+audit_clean <- cleanData2_lifesat_childmort |>
+  summarise(
+    n_rows = n(),
+    n_years = n_distinct(Year),
+    n_continents = n_distinct(Continent2)
+  )
+
+audit_clean
+
+```
+
+``` {r}
+#| label: fig-lifeSat
+#| fig-cap: "Distribution of Life Satisfaction"
+
+cleanData2_lifesat_childmort |>
+  ggplot(aes(LifeSatisfaction)) +
+  geom_density() +
+  geom_vline(xintercept = mean(cleanData2_lifesat_childmort$LifeSatisfaction), linetype = "dashed") +
+  labs(title = "Distribution of Life Satisfaction", x = "Life Satisfaction", y = "Density")
+
+```
+
+``` {r}
+#| label: fig-lifeSatOverTimeByRegion
+#| fig-cap: "Life Satisfaction Over Time by Continent"
+
+cleanData2_lifesat_childmort |>
+  ggplot(aes(x = Year, y = LifeSatisfaction, colour = Continent2)) +
+  geom_jitter(width = 0.2, alpha = 0.35) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Life Satisfaction Over Time by Continent",
+    x = "Year",
+    y = "Life Satisfaction",
+    colour = "Continent"
+  )
+```
+
+``` {r}
+#| echo: true
+#| output: true
+
+m1 <- lm(LifeSatisfaction ~ Year + Continent2, data = cleanData2_lifesat_childmort)
+m2 <- lm(LifeSatisfaction ~ Year * Continent2, data = cleanData2_lifesat_childmort)
+
+summary(m1)
+```
+
+``` {r}
+#| echo: true
+#| output: true
+
+# Compare whether continent-specific time trends improve fit
+anova(m1, m2)
+```
+
+``` {r}
+#| echo: false
+#| output: true
+
+# Keep the full interaction model output available but not shown by default
+summary(m2)
+```
+
+
+Interpretation
+
+In a multiple linear regression allowing continent-specific time trends, none of the interaction terms between Year and Continent were statistically significant. This suggests that while average levels of life satisfaction differ substantially across continents, the *rate of change over time* is broadly similar across regions. Overall, life satisfaction appears relatively stable over the observed period. 
+
+::: {.end-question}
+■
+:::
+
+
+
+## Appendix: References
+The following is best to ignore. It's code I ran and didn't end up using in the final project, but haven't removed into somewhere else ... yet. 
+
+``` {r}
+
+skim(lifesat_childmort)
+
+cleanData_lifesat_childmort <-lifesat_childmort |> 
+    filter(!is.na(LifeSatisfaction))
+
+skim(cleanData_lifesat_childmort)
+
+cleanData2_lifesat_childmort <- cleanData_lifesat_childmort |> 
+    mutate(
+        Continent2 = factor(suppressWarnings(
+            countrycode(`Country Code`, origin = "iso3c", destination = "continent")
+        )),
+        Year_f = factor(Year)
+    ) |> 
+    filter(!is.na(Continent2)) |> 
+    select(Continent2, Year, Year_f, LifeSatisfaction)
+skim(cleanData2_lifesat_childmort)
+
+# cleanData2_lifesat_childmort |> 
+#     ggplot(aes(Year_f, LifeSatisfaction, color = Continent2)) +
+#         geom_dotplot() 
+#         #facet_grid(Continent2 ~ .)
+
+cleanData2_lifesat_childmort |> 
+    ggplot(aes(Year_f)) + 
+        geom_bar()
+
+cleanData2_lifesat_childmort |> 
+    ggplot(aes(Continent2)) + 
+        geom_bar()
+
+# cleanData2_lifesat_childmort |> 
+#     ggplot(aes(LifeSatisfaction)) + 
+#         geom_dotplot(dotsize = 0.25)
+
+# cleanData2_lifesat_childmort |> 
+#     ggplot(aes(LifeSatisfaction)) + 
+#         geom_freqpoly()
+
+cleanData2_lifesat_childmort |> 
+    ggplot(aes(LifeSatisfaction)) + 
+        geom_density() +
+        geom_vline(xintercept = mean(cleanData2_lifesat_childmort$LifeSatisfaction))
+        
+
+
+
+m1 <- lm(LifeSatisfaction ~ Year + Continent2,
+            data = cleanData2_lifesat_childmort)
+summary(m1)
+
+m2 <- lm(LifeSatisfaction ~ Year * Continent2,
+            data = cleanData2_lifesat_childmort)
+summary(m2)
+
+
+#levels(as.factor(cleanData2_lifesat_childmort$Continent2))
+
+
+# summarise_numeric <- function(data, var) {
+#   data |>
+#     summarise(
+#       Variable = var,
+#       Type = "Numeric",
+#       N = sum(!is.na(.data[[var]])),
+#       Missing = sum(is.na(.data[[var]])),
+#       Percent_Missing = mean(is.na(.data[[var]])) * 100,
+#       Unique = n_distinct(.data[[var]], na.rm = TRUE),
+#       Mean = mean(.data[[var]], na.rm = TRUE),
+#       Median = median(.data[[var]], na.rm = TRUE),
+#       SD = sd(.data[[var]], na.rm = TRUE),
+#       Min = min(.data[[var]], na.rm = TRUE),
+#       Max = max(.data[[var]], na.rm = TRUE)
+#     )
+# }
+
+# summarise_categorical <- function(data, var) {
+#   top_level <- data |>
+#     filter(!is.na(.data[[var]])) |>
+#     count(.data[[var]], sort = TRUE) |>
+#     slice(1)
+
+#   data |>
+#     summarise(
+#       Variable = var,
+#       Type = "Categorical",
+#       N = sum(!is.na(.data[[var]])),
+#       Missing = sum(is.na(.data[[var]])),
+#       Percent_Missing = mean(is.na(.data[[var]])) * 100,
+#       Unique = n_distinct(.data[[var]], na.rm = TRUE),
+#       Mode = top_level[[var]],
+#       Mode_Count = top_level$n
+#     )
+# }
+
+# summary_raw <- bind_rows(
+#     summarise_categorical(lifesat_childmort, "Country"),
+#     summarise_categorical(lifesat_childmort, "Country Code"),
+#     summarise_categorical(lifesat_childmort, "Continent"),
+#     summarise_numeric(lifesat_childmort, "Year"),
+#     summarise_numeric(lifesat_childmort, "Tot_pop"),
+#     summarise_numeric(lifesat_childmort, "LifeSatisfaction"),
+# )
+# summary_raw
+
+# cleanData_lifesat_childmort <-lifesat_childmort |> 
+#     mutate(
+#         is_owid = grepl("^OWID_", `Country Code`),
+#         Continent2 = if_else(
+#             is_owid,
+#             NA_character_,
+#             countrycode(`Country Code`, origin = "iso3c", destination = "continent")
+#         )
+#     ) |> 
+#     filter(!is.na(Continent2)) |> 
+#     select(Continent2, Year, LifeSatisfaction) |> 
+#     mutate(Continent2 = factor(Continent2)) |> 
+#     group_by(Continent2, Year) |> 
+#     arrange(Continent2, Year) |> 
+#     summarise(
+#         'Mean Life Satisfaction' = mean(LifeSatisfaction, na.rm = T),
+#         n_lifesat = sum(!is.na(LifeSatisfaction)),
+#         .groups = "drop")
+
+# lifesat_childmort |> 
+#     mutate(
+#         is_owid = grepl("^OWID_", `Country Code`),
+#         Continent2 = if_else(
+#             is_owid,
+#             NA_character_,
+#             countrycode(`Country Code`, origin = "iso3c", destination = "continent")
+#         )
+#     ) |> 
+#     filter(!is.na(Continent2)) |> 
+#     summarise(
+#         'Years Life Satisfaction' = n_distinct(Year[!is.na(LifeSatisfaction)])
+#     )
+
+# lifesat_childmort |> 
+#     ggplot(aes(x = Country)) +
+#         geom_bar()
+
+
+
+
+#cleanData_lifesat_childmort
+#evels(as.factor(cleanData_lifesat_childmort$Continent2))
+```

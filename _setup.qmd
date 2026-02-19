@@ -1,0 +1,62 @@
+---
+title: "Project Rebuild & Maintenance"
+format: html
+---
+
+## Step 0
+
+```{r}
+if (!requireNamespace("renv", quietly = TRUE)) {
+    install.packages("renv")
+}
+```
+
+## 🚨 Emergency Rebuild
+If the environment is completely broken, run these to reset based on `DESCRIPTION`:
+
+```{r}
+#| eval: false
+
+# 1. Force a clean state
+unlink("renv", recursive = TRUE, force = TRUE)
+unlink(".Rprofile", force = TRUE)
+unlink("renv.lock", force = TRUE)
+
+# 2. Re-initialize
+renv::init(bare = TRUE)
+
+# 3. Re-enforce explicit mode
+renv::settings$snapshot.type("explicit")
+
+# 4. Install all packages declared in DESCRIPTION (Imports + Depends)
+renv::install()
+
+# 5. Lock it down
+renv::snapshot()
+
+# 6. Check it's all good
+renv::status()
+
+# Optional 
+# .rs.restartR()
+# renv::status()
+```
+
+## Maintenance Workflow
+
+When you want to add a package permanently:
+
+1. Open DESCRIPTION
+2. Add the package name to Imports
+3. Run ```renv::install()```
+4. Run ```renv::snapshot()```
+
+## Testing the Restore
+
+To verify a new user can join without issues:
+
+```{r}
+#| eval: false
+
+renv::restore()
+```

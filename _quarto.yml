@@ -1,0 +1,23 @@
+# NOTE: This project has fields auto-generated via a script
+project:
+  type: website
+  pre-render: pre-render.R
+  output-dir: docs
+  preview:
+    port: 4200
+
+website:
+  title: "AUTO-GENERATED: See NOTE at top of page"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: simulation-and-computation.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true

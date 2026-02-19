@@ -1,0 +1,4 @@
+^renv$
+^renv\.lock$
+^_setup\.qmd$
+^LICENSE\.md$

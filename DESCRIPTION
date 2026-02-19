@@ -1,0 +1,35 @@
+Package: bijans.dae
+Type: Package
+Title: Design and Analysis of Experiments
+Version: 0.1.0
+Authors@R: c(person("Irshaad", "Adatia", role = c("aut", "cre")))
+Description: A Quarto website for notes, examples, and exercises related to design and analysis of experiments.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.2)
+Imports:
+    abind,
+    agridat,
+    broom,
+    BsMD,
+    crosstable,
+    DiagrammeR,
+    emmeans,
+    FrF2,
+    gridExtra,
+    janitor,
+    kableExtra,
+    knitr,
+    latex2exp,
+    magic,
+    patchwork,
+    pwr,
+    reticulate,
+    scidesignR,
+    tidyverse,
+    yaml
+Suggests:
+    usethis
+URL: https://github.com/bijans-projects/design-and-analysis-of-experiments
+BugReports: https://github.com/bijans-projects/design-and-analysis-of-experiments/issues
