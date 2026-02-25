@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Comparing Two Treatments</title>
+<title>STAT 4240 – Test 1 Cheat Sheet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,41 +18,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -3861,7 +3826,6 @@ vertical-align: -.125em;
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 
   <script>/*
  * Polyfill service v3.111.0
@@ -4033,6 +3997,16 @@ font-size: 1.5em;
     <a class="nav-link" href="./examples-and-exercises.html"> 
 <span class="menu-text">Exploration</span></a>
   </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">stats-basics.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">stats-basics-alt.qmd</span>
+    </span>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Assignments</span>
@@ -4071,30 +4045,27 @@ font-size: 1.5em;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup-stuff" id="toc-setup-stuff" class="nav-link active" data-scroll-target="#setup-stuff">Setup Stuff</a></li>
-  <li><a href="#a03-ex-3-1" id="toc-a03-ex-3-1" class="nav-link" data-scroll-target="#a03-ex-3-1">Exercise 3.1</a></li>
-  <li><a href="#a03-ex-3-2" id="toc-a03-ex-3-2" class="nav-link" data-scroll-target="#a03-ex-3-2">Exercise 3.2</a>
+  <li><a href="#study-design" id="toc-study-design" class="nav-link active" data-scroll-target="#study-design">STUDY DESIGN</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link" data-scroll-target="#random-variables">RANDOM VARIABLES</a>
   <ul class="collapse">
-  <li><a href="#a03-ex-3-2-a" id="toc-a03-ex-3-2-a" class="nav-link" data-scroll-target="#a03-ex-3-2-a">(a) City A</a></li>
-  <li><a href="#a03-ex-3-2-b" id="toc-a03-ex-3-2-b" class="nav-link" data-scroll-target="#a03-ex-3-2-b">(b) Marketing Agency B</a></li>
-  <li><a href="#a03-ex-3-2-c" id="toc-a03-ex-3-2-c" class="nav-link" data-scroll-target="#a03-ex-3-2-c">(c) Paul</a></li>
+  <li><a href="#pmf" id="toc-pmf" class="nav-link" data-scroll-target="#pmf">PMF</a></li>
+  <li><a href="#pdf" id="toc-pdf" class="nav-link" data-scroll-target="#pdf">PDF</a></li>
+  <li><a href="#cdf" id="toc-cdf" class="nav-link" data-scroll-target="#cdf">CDF</a></li>
   </ul></li>
-  <li><a href="#a03-ex-3-4" id="toc-a03-ex-3-4" class="nav-link" data-scroll-target="#a03-ex-3-4">Exercise 3.4</a>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions">DISTRIBUTIONS</a>
   <ul class="collapse">
-  <li><a href="#a03-ex-3-4-a" id="toc-a03-ex-3-4-a" class="nav-link" data-scroll-target="#a03-ex-3-4-a">(a) Individual</a></li>
-  <li><a href="#a03-ex-3-4-b" id="toc-a03-ex-3-4-b" class="nav-link" data-scroll-target="#a03-ex-3-4-b">(b) Particular Treatment</a></li>
+  <li><a href="#bernoullip" id="toc-bernoullip" class="nav-link" data-scroll-target="#bernoullip">Bernoulli(p)</a></li>
+  <li><a href="#binomialnp" id="toc-binomialnp" class="nav-link" data-scroll-target="#binomialnp">Binomial(n,p)</a></li>
+  <li><a href="#normalmusigma2" id="toc-normalmusigma2" class="nav-link" data-scroll-target="#normalmusigma2">Normal(<span class="math inline">\(\mu,\sigma^2\)</span>)</a></li>
   </ul></li>
-  <li><a href="#a03-ex-3-11" id="toc-a03-ex-3-11" class="nav-link" data-scroll-target="#a03-ex-3-11">Exercise 3.11</a>
-  <ul class="collapse">
-  <li><a href="#a03-ex-3-11-a" id="toc-a03-ex-3-11-a" class="nav-link" data-scroll-target="#a03-ex-3-11-a">(a) Ratio of Variances</a></li>
-  <li><a href="#a03-ex-3-11-b" id="toc-a03-ex-3-11-b" class="nav-link" data-scroll-target="#a03-ex-3-11-b">(b) Precision Requirements</a></li>
-  </ul></li>
-  <li><a href="#a03-ex-3-12" id="toc-a03-ex-3-12" class="nav-link" data-scroll-target="#a03-ex-3-12">Exercise 3.12</a>
-  <ul class="collapse">
-  <li><a href="#a03-ex-3-12-a" id="toc-a03-ex-3-12-a" class="nav-link" data-scroll-target="#a03-ex-3-12-a">(a) Treatment Allocation</a></li>
-  <li><a href="#a03-ex-3-12-b" id="toc-a03-ex-3-12-b" class="nav-link" data-scroll-target="#a03-ex-3-12-b">(b) Probability</a></li>
-  <li><a href="#a03-ex-3-12-c" id="toc-a03-ex-3-12-c" class="nav-link" data-scroll-target="#a03-ex-3-12-c">(c) Experimental Design</a></li>
-  </ul></li>
+  <li><a href="#expectation-variance" id="toc-expectation-variance" class="nav-link" data-scroll-target="#expectation-variance">EXPECTATION &amp; VARIANCE</a></li>
+  <li><a href="#sample-mean" id="toc-sample-mean" class="nav-link" data-scroll-target="#sample-mean">SAMPLE MEAN</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">HYPOTHESIS TESTING</a></li>
+  <li><a href="#proportions" id="toc-proportions" class="nav-link" data-scroll-target="#proportions">PROPORTIONS</a></li>
+  <li><a href="#two-treatments" id="toc-two-treatments" class="nav-link" data-scroll-target="#two-treatments">TWO TREATMENTS</a></li>
+  <li><a href="#crd" id="toc-crd" class="nav-link" data-scroll-target="#crd">CRD</a></li>
+  <li><a href="#power-one-sided-mean" id="toc-power-one-sided-mean" class="nav-link" data-scroll-target="#power-one-sided-mean">POWER (One-Sided Mean)</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">INTERPRETATION</a></li>
   </ul>
 </nav>
     </div>
@@ -4103,7 +4074,7 @@ font-size: 1.5em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Comparing Two Treatments</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<h1 class="title">STAT 4240 – Test 1 Cheat Sheet</h1>
 </div>
 
 
@@ -4120,656 +4091,129 @@ font-size: 1.5em;
 </header>
 
 
-<section id="setup-stuff" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="setup-stuff">Setup Stuff</h2>
-<p>Let’s get started!</p>
-<div class="cell">
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="a02-load-packages" data-lst-cap="Loading Packages and R Setup"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="a02-load-packages-1"><a href="#a02-load-packages-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="a02-load-packages-2"><a href="#a02-load-packages-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scidesignR)</span>
-<span id="a02-load-packages-3"><a href="#a02-load-packages-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="a02-load-packages-4"><a href="#a02-load-packages-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="a02-load-packages-5"><a href="#a02-load-packages-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
-<span id="a02-load-packages-6"><a href="#a02-load-packages-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="a02-load-packages-7"><a href="#a02-load-packages-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="a02-load-packages-8"><a href="#a02-load-packages-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4240</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
+<section id="study-design" class="level2">
+<h2 class="anchored" data-anchor-id="study-design">STUDY DESIGN</h2>
+<p>Response = outcome measured<br>
+Factor = explanatory variable<br>
+Treatment = level/combo of factors<br>
+Experimental Unit = smallest unit receiving treatment<br>
+Covariate = measured but not manipulated</p>
+<p>Randomization → removes systematic bias<br>
+Replication → reduces variance<br>
+Control → fair comparison</p>
+<p>Observational → assignment mechanism unknown<br>
+Experimental → assignment mechanism controlled</p>
 </section>
-<section id="a03-ex-3-1" class="level2">
-<h2 class="anchored" data-anchor-id="a03-ex-3-1">Exercise 3.1</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Suppose <span class="math inline">\(X_1 \sim N(10,25)\)</span> and <span class="math inline">\(X_2 \sim N(5,4)\)</span> in a population. You randomly select 100 samples from the population and assign treatment <span class="math inline">\(A\)</span> to half of the sample and <span class="math inline">\(B\)</span> to the rest. Simulate the sample with treatment assignments and the covariates, <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>. Compare the distributions of <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> in the two treatment groups. Repeat the simulation one hundred times. Do you observe consistent results?</p>
-</div>
-</div>
-<div class="cell">
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span>              <span class="co"># N experimental units</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>N_A <span class="ot">&lt;-</span> N <span class="sc">/</span> <span class="dv">2</span>          <span class="co"># </span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>N_B <span class="ot">&lt;-</span> N <span class="sc">-</span> N_A</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick N experimental units</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_i =</span> <span class="dv">1</span><span class="sc">:</span>N)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>X_A <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(N_A) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>X_A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 2
-     x_i x_A  
-   &lt;int&gt; &lt;lgl&gt;
- 1    83 TRUE 
- 2    85 TRUE 
- 3    61 TRUE 
- 4    29 TRUE 
- 5    75 TRUE 
- 6    10 TRUE 
- 7    40 TRUE 
- 8    41 TRUE 
- 9    19 TRUE 
-10    35 TRUE 
-# ℹ 40 more rows</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_B <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anti_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">if_else</span>(X_A<span class="sc">$</span>x_A, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>X_B</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 × 2
-     x_i x_B  
-   &lt;int&gt; &lt;lgl&gt;
- 1     1 TRUE 
- 2     3 TRUE 
- 3     4 TRUE 
- 4     6 TRUE 
- 5     7 TRUE 
- 6     8 TRUE 
- 7    11 TRUE 
- 8    14 TRUE 
- 9    16 TRUE 
-10    17 TRUE 
-# ℹ 40 more rows</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X_i <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="fu">coalesce</span>(x_A, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(X_B, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">coalesce</span>(x_B, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="fu">if_else</span>(x_A, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>X_i</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 100 × 6
-     x_i   x_1   x_2 x_A   x_B   Treatment
-   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt; &lt;lgl&gt; &lt;chr&gt;    
- 1     1 12.7   7.92 FALSE TRUE  B        
- 2     2  1.55  3.54 TRUE  FALSE A        
- 3     3 14.7   6.86 FALSE TRUE  B        
- 4     4 10.3   4.91 FALSE TRUE  B        
- 5     5  6.56  5.69 TRUE  FALSE A        
- 6     6  5.50  4.59 FALSE TRUE  B        
- 7     7 11.5   7.71 FALSE TRUE  B        
- 8     8 23.4   6.60 FALSE TRUE  B        
- 9     9  6.16  4.46 TRUE  FALSE A        
-10    10 11.9   4.40 TRUE  FALSE A        
-# ℹ 90 more rows</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>summary_X_i <span class="ot">&lt;-</span> X_i <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean1 =</span> <span class="fu">mean</span>(x_1),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">median1 =</span> <span class="fu">median</span>(x_1),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd1 =</span> <span class="fu">sd</span>(x_1),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean2 =</span> <span class="fu">mean</span>(x_2),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">median2 =</span> <span class="fu">median</span>(x_2),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd2 =</span> <span class="fu">sd</span>(x_2),</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">meanDiff =</span> mean1 <span class="sc">-</span> mean2</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>summary_X_i</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 8
-  Treatment mean1 median1   sd1 mean2 median2   sd2 meanDiff
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-1 A          9.85    9.63  4.96  4.75    4.60  1.86     5.10
-2 B         10.1    10.4   5.26  5.20    4.91  1.95     4.93</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mean_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean1[<span class="dv">1</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean1[<span class="dv">2</span>] </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>repeatSampling <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>compare_means <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">X_i =</span> <span class="dv">1</span><span class="sc">:</span>repeatSampling, </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean1_difference_A_minus_B =</span> <span class="dv">0</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean2_difference_A_minus_B =</span> <span class="dv">0</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>repeatSampling) {</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_i =</span> <span class="dv">1</span><span class="sc">:</span>N)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    X_A <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sample_n</span>(N_A) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_A</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    X_B <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="fu">anti_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">if_else</span>(X_A<span class="sc">$</span>x_A, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_B</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    X_i <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="fu">coalesce</span>(x_A, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(X_B, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">coalesce</span>(x_B, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="fu">if_else</span>(x_A, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_i</span></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    summary_X_i <span class="ot">&lt;-</span> X_i <span class="sc">%&gt;%</span> </span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarize</span>(</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean1 =</span> <span class="fu">mean</span>(x_1),</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>            <span class="at">median1 =</span> <span class="fu">median</span>(x_1),</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd1 =</span> <span class="fu">sd</span>(x_1),</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean2 =</span> <span class="fu">mean</span>(x_2),</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>            <span class="at">median2 =</span> <span class="fu">median</span>(x_2),</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd2 =</span> <span class="fu">sd</span>(x_2),</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>            <span class="at">meanDiff =</span> mean1 <span class="sc">-</span> mean2</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    <span class="co">#summary_X_i</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    mean1_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean1[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;A&quot;</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean1[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;B&quot;</span>]</span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    mean2_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean2[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;A&quot;</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean2[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;B&quot;</span>]</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    compare_means<span class="sc">$</span>mean1_difference_A_minus_B[i] <span class="ot">=</span> mean1_difference_A_minus_B</span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    compare_means<span class="sc">$</span>mean2_difference_A_minus_B[i] <span class="ot">=</span> mean2_difference_A_minus_B</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>X_1_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_1_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X_1_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>X_2_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X_2_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X_2_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>X_1_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.122112</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X_2_mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.02497193</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>X_1_sd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.014858</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>X_2_sd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.37952</code></pre>
-</div>
-</div>
-<p>Yes, we observe consistent results. It almost appears that this follows a standard normal distribution.</p>
-<div class="end-question">
-<p>■</p>
-</div>
+<section id="random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="random-variables">RANDOM VARIABLES</h2>
+<p><span class="math inline">\(X\)</span> random variable<br>
+<span class="math inline">\(x\)</span> observed value<br>
+<span class="math inline">\(\bar X = \frac{1}{n} \sum X_i\)</span><br>
+<span class="math inline">\(\bar x\)</span> observed mean</p>
+<section id="pmf" class="level3">
+<h3 class="anchored" data-anchor-id="pmf">PMF</h3>
+<p><span class="math inline">\(P(X=x)\)</span>, <span class="math inline">\(\sum p(x)=1\)</span></p>
 </section>
-<section id="a03-ex-3-2" class="level2">
-<h2 class="anchored" data-anchor-id="a03-ex-3-2">Exercise 3.2</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Identify <em>treatments</em> and <em>experimental units</em> in the following scenarios.</p>
-</div>
-</div>
-<section id="a03-ex-3-2-a" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-2-a">(a) City A</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>City A would like to evaluate whether a new employment training program for the unemployed is more effective compared to the existing program. The City decides to run a pilot program for selected employment program applicants.</p>
-</div>
-</div>
-<dl>
-<dt>Treatments</dt>
-<dd>
-<p>Existing Employment Training Program</p>
-</dd>
-<dd>
-<p>New Employment Training Program</p>
-</dd>
-<dt>Experimental Units</dt>
-<dd>
-<p>Individual unemployed applicants</p>
-</dd>
-</dl>
-<div class="end-question">
-<p>□</p>
-</div>
+<section id="pdf" class="level3">
+<h3 class="anchored" data-anchor-id="pdf">PDF</h3>
+<p><span class="math inline">\(f(x)\ge0\)</span>, <span class="math inline">\(\int f(x)dx=1\)</span></p>
 </section>
-<section id="a03-ex-3-2-b" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-2-b">(b) Marketing Agency B</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Marketing Agency B creates and places targeted advertisements on video-sharing platforms for its clients. The Agency decides to run an experiment to compare the effectiveness of placing advertisements before vs. during vs. after videos.</p>
-</div>
-</div>
-<dl>
-<dt>Treatments</dt>
-<dd>
-<p>Placing advertisement before videos</p>
-</dd>
-<dd>
-<p>Placing advertisement during videos</p>
-</dd>
-<dd>
-<p>Placing advertisement after videos</p>
-</dd>
-<dt>Experimental Units</dt>
-<dd>
-<p>Individuals targeted</p>
-</dd>
-</dl>
-<div class="end-question">
-<p>□</p>
-</div>
-</section>
-<section id="a03-ex-3-2-c" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-2-c">(c) Paul</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Paul enjoys baking and finds a new recipe for chocolate chip cookies. Paul decides to test it by bringing cookies baked using his current recipe and the new recipe to his study group. Each member of the group blindly tastes each kind and provides their ratings.</p>
-</div>
-</div>
-<dl>
-<dt>Treatments</dt>
-<dd>
-<p>Current chocolate chip cookie recipe</p>
-</dd>
-<dd>
-<p>New chocholate chip cookie recipe</p>
-</dd>
-<dt>Experimental Units</dt>
-<dd>
-<p>Individual tasting (each person <span class="math inline">\(\times\)</span> each recipe)</p>
-</dd>
-</dl>
-<div class="end-question">
-<p>■</p>
-</div>
+<section id="cdf" class="level3">
+<h3 class="anchored" data-anchor-id="cdf">CDF</h3>
+<p><span class="math inline">\(F(x)=P(X\le x)\)</span></p>
 </section>
 </section>
-<section id="a03-ex-3-4" class="level2">
-<h2 class="anchored" data-anchor-id="a03-ex-3-4">Exercise 3.4</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Consider the scenario in Example 3.1, and suppose that an investigator only has enough fertilizer A to use on four plots. Answer the following questions.</p>
-</div>
-</div>
-<section id="a03-ex-3-4-a" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-4-a">(a) Individual</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is the probability that an individual plot receives fertilizer A?</p>
-</div>
-</div>
-<p><span class="math inline">\(N_A = 4\)</span>, the number of experimental units assigned to treatment A<br>
-Assignment probability = <span class="math inline">\(1/{{N}\choose{N_A}}\)</span></p>
-<div class="cell">
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>N_A <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>assignmentProbability <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">choose</span>(N, N_A)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>assignmentProbability</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.002020202</code></pre>
-</div>
-</div>
-<p>For plot <span class="math inline">\(n_1\)</span>, how many times was it selected for fertilizer A?</p>
-<p><span class="math inline">\(P(n_1 = A) =\)</span> …. ?</p>
-<p>If we fix plot 1 to A. Then the remaining 11 plots have <span class="math inline">\({11} \choose {3}\)</span> ways of choosing the other A. Without the loss of generality, we have that the marginal probability will be</p>
-<div class="cell">
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">11</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 165</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 495</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">11</span>,<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3333333</code></pre>
-</div>
-</div>
-<p><span class="math display">\[
-\begin{gather}
-    \frac{{N-1} \choose {N_A} - 1}{N \choose N_A} \\
-    = \frac{{11} \choose 3}{12 \choose 4} \\
-    = \frac{165}{495} \\
-    = \frac{1}{3}
-\end{gather}
-\]</span></p>
-<div class="end-question">
-<p>□</p>
-</div>
+<section id="distributions" class="level2">
+<h2 class="anchored" data-anchor-id="distributions">DISTRIBUTIONS</h2>
+<section id="bernoullip" class="level3">
+<h3 class="anchored" data-anchor-id="bernoullip">Bernoulli(p)</h3>
+<p><span class="math inline">\(E=p\)</span><br>
+<span class="math inline">\(Var=p(1-p)\)</span></p>
 </section>
-<section id="a03-ex-3-4-b" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-4-b">(b) Particular Treatment</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is the probability of choosing the treatment assignment A, A, A, A, B, B, B, B, B, B, B, B?</p>
-</div>
-</div>
-<p>Assignment probability =</p>
-<p><span class="math display">\[
-\begin{gather}
-    \frac{1}{{N}\choose{N_A}} \\
-    = \frac{1}{{12}\choose{4}} \\
-    = \frac{1}{495} \\
-    \approxeq 0.0020202
-\end{gather}
-\]</span></p>
-<div class="end-question">
-<p>■</p>
-</div>
+<section id="binomialnp" class="level3">
+<h3 class="anchored" data-anchor-id="binomialnp">Binomial(n,p)</h3>
+<p><span class="math inline">\(P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\)</span><br>
+<span class="math inline">\(E=np\)</span><br>
+<span class="math inline">\(Var=np(1-p)\)</span></p>
+</section>
+<section id="normalmusigma2" class="level3">
+<h3 class="anchored" data-anchor-id="normalmusigma2">Normal(<span class="math inline">\(\mu,\sigma^2\)</span>)</h3>
+<p><span class="math inline">\(E=\mu\)</span>, <span class="math inline">\(Var=\sigma^2\)</span></p>
+<p>Standardize: <span class="math inline">\(Z=\frac{X-\mu}{\sigma}\)</span></p>
 </section>
 </section>
-<section id="a03-ex-3-11" class="level2">
-<h2 class="anchored" data-anchor-id="a03-ex-3-11">Exercise 3.11</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Consider a randomized pair design with <span class="math inline">\(n\)</span> units where two treatments are randomly assigned to each unit, resulting in a pair of observations <span class="math inline">\((X_i, Y_i) \text{ for } i=1,...,n\)</span> on each unit. Assume that <span class="math inline">\(E[X_i] = \mu_X\)</span>, <span class="math inline">\(E[Y_i] = \mu_Y\)</span>, and <span class="math inline">\(\text{Var}(X_i) = \text{Var}(Y_i) = \sigma^2 \text{ for } i=1,...,n\)</span>. Alternatively, we may consider an unpaired design where we assign two independent treatment groups to <span class="math inline">\(2n\)</span> units.</p>
-</div>
-</div>
-<section id="a03-ex-3-11-a" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-11-a">(a) Ratio of Variances</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Show that the ratio of the variances in the paired to the unpaired design is <span class="math inline">\(1 - \rho\)</span>, where <span class="math inline">\(\rho\)</span> is the correlation between <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span>.</p>
-</div>
-</div>
-<p>Let D be the paired (X - Y) Then</p>
-<p>$$ <span class="math display">\[\begin{align}
-Var(D) &amp; = Var(X - Y) \\
-       &amp; = Var(X) + Var(Y) - 2Cov(X,Y) \\
-       &amp; = \frac{1}{n}\left(\sigma_X^2 + \sigma_Y^2 - 2 \rho \sigma_X \sigma_Y \right) \\
-       &amp; = \frac{1}{n}\left(2\sigma^2 - 2 \rho \sigma^2 \right)\\
-       &amp; = \frac{2\sigma^2}{n}(1 - \rho)\\
-\end{align}\]</span></p>
-<p>$$</p>
-<p>$$ <span class="math display">\[\begin{align}
-Var(X - Y) &amp; = \\
-       &amp; = Var(X) + Var(Y) \\
-       &amp; = \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y} \\
-       &amp; = \frac{\sigma^2}{n} + \frac{\sigma^2}{n} \\
-       &amp; = \frac{2\sigma^2}{n}
-\end{align}\]</span></p>
-<p>$$</p>
-<p>$$ <span class="math display">\[\begin{align}
-A / B &amp; = \\
-       &amp; = \frac{
-             \frac{2\sigma^2}{n}(1 - \rho) }
-            {\frac{2\sigma^2}{n} } \\
-       &amp; = 1-\rho    
-\end{align}\]</span></p>
-<p>$$</p>
-<div class="end-question">
-<p>□</p>
-</div>
+<section id="expectation-variance" class="level2">
+<h2 class="anchored" data-anchor-id="expectation-variance">EXPECTATION &amp; VARIANCE</h2>
+<p><span class="math inline">\(E(aX+b)=aE(X)+b\)</span><br>
+<span class="math inline">\(Var(aX+b)=a^2Var(X)\)</span></p>
+<p><span class="math inline">\(Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y)\)</span><br>
+<span class="math inline">\(Var(X-Y)=Var(X)+Var(Y)-2Cov(X,Y)\)</span></p>
+<p><span class="math inline">\(Cov(aX,bY)=abCov(X,Y)\)</span></p>
+<p><span class="math inline">\(\rho=\frac{Cov(X,Y)}{\sigma_X\sigma_Y}\)</span></p>
+<p>If independent → <span class="math inline">\(Cov=0\)</span></p>
 </section>
-<section id="a03-ex-3-11-b" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-11-b">(b) Precision Requirements</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If <span class="math inline">\(\rho = 0.5\)</span>, how many subjects are required in the unpaired design to yield the same precision as the paired design?</p>
-</div>
-</div>
-<p>TODO: Solution goes here</p>
-<div class="end-question">
-<p>■</p>
-</div>
+<section id="sample-mean" class="level2">
+<h2 class="anchored" data-anchor-id="sample-mean">SAMPLE MEAN</h2>
+<p><span class="math inline">\(\bar X=\frac{1}{n}\sum X_i\)</span></p>
+<p><span class="math inline">\(E(\bar X)=\mu\)</span><br>
+<span class="math inline">\(Var(\bar X)=\frac{\sigma^2}{n}\)</span><br>
+<span class="math inline">\(SD(\bar X)=\frac{\sigma}{\sqrt n}\)</span></p>
+<p><span class="math inline">\(Var(a\bar X+b)=a^2\frac{\sigma^2}{n}\)</span></p>
+<p>Sample variance: <span class="math inline">\(S^2=\frac{1}{n-1}\sum (X_i-\bar X)^2\)</span></p>
+<p>If normal &amp; <span class="math inline">\(\sigma\)</span> unknown: <span class="math inline">\(T=\frac{\bar X-\mu}{S/\sqrt n} \sim t_{n-1}\)</span></p>
 </section>
+<section id="hypothesis-testing" class="level2">
+<h2 class="anchored" data-anchor-id="hypothesis-testing">HYPOTHESIS TESTING</h2>
+<p><span class="math inline">\(H_0: \theta=\theta_0\)</span><br>
+<span class="math inline">\(H_A: \neq, &gt;, &lt;\)</span></p>
+<p>Mean (σ known): <span class="math inline">\(z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}\)</span></p>
+<p>Reject (two-sided): <span class="math inline">\(|z|&gt;z_{\alpha/2}\)</span></p>
+<p>Type I = <span class="math inline">\(\alpha\)</span><br>
+Type II = <span class="math inline">\(\beta\)</span><br>
+Power = <span class="math inline">\(1-\beta\)</span></p>
+<p>Empirical Rule:<br>
+1 SD → 68%<br>
+2 SD → 95%<br>
+3 SD → 99.7%</p>
 </section>
-<section id="a03-ex-3-12" class="level2">
-<h2 class="anchored" data-anchor-id="a03-ex-3-12">Exercise 3.12</h2>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Suppose that two drugs A and B are to be tested on 12 subjects’ eyes. The drugs will be randomly assigned to the left eye or right eye based on the flip of a fair coin. If the coin toss is heads then a subject will receive drug A in their right eye. The coin was flipped 12 times and the following sequence of heads and tails was obtained: <span class="math display">\[
-T \qquad
-T \qquad
-H \qquad
-T \qquad
-H \qquad
-T \qquad
-T \qquad
-T \qquad
-H \qquad
-T \qquad
-T \qquad
-H
-\]</span></p>
-</div>
-</div>
-<section id="a03-ex-3-12-a" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-12-a">(a) Treatment Allocation</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Create a table that shows how the treatments will be allocated to the 12 subjects’ left and right eyes.</p>
-</div>
-</div>
-<p>TODO: Solution goes here</p>
-<div class="end-question">
-<p>□</p>
-</div>
+<section id="proportions" class="level2">
+<h2 class="anchored" data-anchor-id="proportions">PROPORTIONS</h2>
+<p><span class="math inline">\(\hat p=\frac{X}{n}\)</span></p>
+<p><span class="math inline">\(E(\hat p)=p\)</span><br>
+<span class="math inline">\(Var(\hat p)=\frac{p(1-p)}{n}\)</span></p>
+<p>Test: <span class="math inline">\(z=\frac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}\)</span></p>
+<p>CI: <span class="math inline">\(\hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}\)</span></p>
+<p>Sample size: <span class="math inline">\(n=\frac{z^2 p(1-p)}{m^2}\)</span></p>
+<p>Worst case → <span class="math inline">\(p=0.5\)</span></p>
 </section>
-<section id="a03-ex-3-12-b" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-12-b">(b) Probability</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What is the probability of obtaining this treatment allocation?</p>
-</div>
-</div>
-<p>TODO: Solution goes here</p>
-<div class="end-question">
-<p>□</p>
-</div>
+<section id="two-treatments" class="level2">
+<h2 class="anchored" data-anchor-id="two-treatments">TWO TREATMENTS</h2>
+<p>Unpaired: <span class="math inline">\(Var=\frac{\sigma_A^2}{n_A}+\frac{\sigma_B^2}{n_B}\)</span></p>
+<p>Balanced: <span class="math inline">\(\frac{\sigma_A^2+\sigma_B^2}{n}\)</span></p>
+<p>Equal variances: <span class="math inline">\(\frac{2\sigma^2}{n}\)</span></p>
+<p>Paired: <span class="math inline">\(Var(\bar D)=\frac{\sigma_A^2+\sigma_B^2-2Cov(X,Y)}{n}\)</span></p>
+<p>Paired better if <span class="math inline">\(Cov&gt;0\)</span></p>
 </section>
-<section id="a03-ex-3-12-c" class="level3">
-<h3 class="anchored" data-anchor-id="a03-ex-3-12-c">(c) Experimental Design</h3>
-<div class="callout callout-style-simple callout-note callout-titled" title="Exercise Instructions">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Exercise Instructions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>What type of experimental design has been used to assign treatments to subjects? Explain.</p>
-</div>
-</div>
-<p>TODO: Solution goes here</p>
-<div class="end-question">
-<p>■</p>
-</div>
+<section id="crd" class="level2">
+<h2 class="anchored" data-anchor-id="crd">CRD</h2>
+<p><span class="math inline">\(\binom{N}{N_A}=\frac{N!}{N_A!(N-N_A)!}\)</span></p>
+<p>Each assignment: <span class="math inline">\(1/\binom{N}{N_A}\)</span></p>
+<p>Propensity: <span class="math inline">\(P(W_i=1)=\frac{N_A}{N}\)</span></p>
+<p>Units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> both treated: <span class="math inline">\(\frac{\binom{N-2}{N_A-2}}{\binom{N}{N_A}}\)</span></p>
+</section>
+<section id="power-one-sided-mean" class="level2">
+<h2 class="anchored" data-anchor-id="power-one-sided-mean">POWER (One-Sided Mean)</h2>
+<p>Reject if: <span class="math inline">\(\bar X&gt;\mu_0+z_\alpha\frac{\sigma}{\sqrt n}\)</span></p>
+<p>Under <span class="math inline">\(\mu_1\)</span>: <span class="math inline">\(Z\sim N\left(\frac{\mu_1-\mu_0}{\sigma/\sqrt n},1\right)\)</span></p>
+<p>Power: <span class="math inline">\(P\left(Z&gt;z_\alpha-\frac{\mu_1-\mu_0}{\sigma/\sqrt n}\right)\)</span></p>
+</section>
+<section id="interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation">INTERPRETATION</h2>
+<p>Confidence: “If repeated many times, ___% of intervals contain the true parameter.”</p>
+<p>p-value: “If <span class="math inline">\(H_0\)</span> were true, this extreme would occur with probability ___.”</p>
+<p>Reject if <span class="math inline">\(p&lt;\alpha\)</span>.</p>
 
 
-<!-- -->
-
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -4843,57 +4287,6 @@ H
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -5223,418 +4616,10 @@ H
       }
     }
   });
-  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Comparing Two Treatments&quot;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="an">order:</span><span class="co"> 2</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">    html:</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">        code-fold: show</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">        code-tools: true</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">        smooth-scroll: true</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">        anchor-sections: true</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup Stuff {.unnumbered}</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>Let&#39;s get started!</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-label: a02-load-packages</span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| lst-cap: Loading Packages and R Setup</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: false</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scidesignR)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">4240</span>)</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.1 {#a03-ex-3-1}</span></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>Suppose $X_1 \sim N(10,25)$ and $X_2 \sim N(5,4)$ in a population. You randomly select 100 samples from the population and assign treatment $A$ to half of the sample and $B$ to the rest. Simulate the sample with treatment assignments and the covariates, $X_1$ and $X_2$. Compare the distributions of $X_1$ and $X_2$ in the two treatment groups. Repeat the simulation one hundred times. Do you observe consistent results?</span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span>              <span class="co"># N experimental units</span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a>N_A <span class="ot">&lt;-</span> N <span class="sc">/</span> <span class="dv">2</span>          <span class="co"># </span></span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a>N_B <span class="ot">&lt;-</span> N <span class="sc">-</span> N_A</span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick N experimental units</span></span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_i =</span> <span class="dv">1</span><span class="sc">:</span>N)</span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a>X_A <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_n</span>(N_A) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a>X_A</span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a>X_B <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">anti_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">if_else</span>(X_A<span class="sc">$</span>x_A, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a>X_B</span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a>X_i <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="fu">coalesce</span>(x_A, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(X_B, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">coalesce</span>(x_B, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="fu">if_else</span>(x_A, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a>X_i</span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>summary_X_i <span class="ot">&lt;-</span> X_i <span class="sc">%&gt;%</span> </span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(</span>
-<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean1 =</span> <span class="fu">mean</span>(x_1),</span>
-<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a>        <span class="at">median1 =</span> <span class="fu">median</span>(x_1),</span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd1 =</span> <span class="fu">sd</span>(x_1),</span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean2 =</span> <span class="fu">mean</span>(x_2),</span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>        <span class="at">median2 =</span> <span class="fu">median</span>(x_2),</span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>        <span class="at">sd2 =</span> <span class="fu">sd</span>(x_2),</span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>        <span class="at">meanDiff =</span> mean1 <span class="sc">-</span> mean2</span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>summary_X_i</span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a>mean_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean1[<span class="dv">1</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean1[<span class="dv">2</span>] </span>
-<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a>repeatSampling <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>compare_means <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">X_i =</span> <span class="dv">1</span><span class="sc">:</span>repeatSampling, </span>
-<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean1_difference_A_minus_B =</span> <span class="dv">0</span>,</span>
-<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean2_difference_A_minus_B =</span> <span class="dv">0</span>)</span>
-<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>repeatSampling) {</span>
-<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a>    X <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x_i =</span> <span class="dv">1</span><span class="sc">:</span>N)</span>
-<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a>    X_A <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sample_n</span>(N_A) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_A</span></span>
-<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a>    X_B <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a>        <span class="fu">anti_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">if_else</span>(X_A<span class="sc">$</span>x_A, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>))</span>
-<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_B</span></span>
-<span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a>    X_i <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> </span>
-<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_1 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="dv">5</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_2 =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">5</span>, <span class="at">sd =</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(X_A, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_A =</span> <span class="fu">coalesce</span>(x_A, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a>        <span class="fu">left_join</span>(X_B, <span class="at">by =</span> <span class="st">&quot;x_i&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">x_B =</span> <span class="fu">coalesce</span>(x_B, <span class="cn">FALSE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(<span class="at">Treatment =</span> <span class="fu">if_else</span>(x_A, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>))</span>
-<span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a>    <span class="co">#X_i</span></span>
-<span id="cb27-115"><a href="#cb27-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-116"><a href="#cb27-116" aria-hidden="true" tabindex="-1"></a>    summary_X_i <span class="ot">&lt;-</span> X_i <span class="sc">%&gt;%</span> </span>
-<span id="cb27-117"><a href="#cb27-117" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(Treatment) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-118"><a href="#cb27-118" aria-hidden="true" tabindex="-1"></a>        <span class="fu">summarize</span>(</span>
-<span id="cb27-119"><a href="#cb27-119" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean1 =</span> <span class="fu">mean</span>(x_1),</span>
-<span id="cb27-120"><a href="#cb27-120" aria-hidden="true" tabindex="-1"></a>            <span class="at">median1 =</span> <span class="fu">median</span>(x_1),</span>
-<span id="cb27-121"><a href="#cb27-121" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd1 =</span> <span class="fu">sd</span>(x_1),</span>
-<span id="cb27-122"><a href="#cb27-122" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean2 =</span> <span class="fu">mean</span>(x_2),</span>
-<span id="cb27-123"><a href="#cb27-123" aria-hidden="true" tabindex="-1"></a>            <span class="at">median2 =</span> <span class="fu">median</span>(x_2),</span>
-<span id="cb27-124"><a href="#cb27-124" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd2 =</span> <span class="fu">sd</span>(x_2),</span>
-<span id="cb27-125"><a href="#cb27-125" aria-hidden="true" tabindex="-1"></a>            <span class="at">meanDiff =</span> mean1 <span class="sc">-</span> mean2</span>
-<span id="cb27-126"><a href="#cb27-126" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb27-127"><a href="#cb27-127" aria-hidden="true" tabindex="-1"></a>    <span class="co">#summary_X_i</span></span>
-<span id="cb27-128"><a href="#cb27-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-129"><a href="#cb27-129" aria-hidden="true" tabindex="-1"></a>    mean1_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean1[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;A&quot;</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean1[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;B&quot;</span>]</span>
-<span id="cb27-130"><a href="#cb27-130" aria-hidden="true" tabindex="-1"></a>    mean2_difference_A_minus_B <span class="ot">&lt;-</span> summary_X_i<span class="sc">$</span>mean2[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;A&quot;</span>] <span class="sc">-</span> summary_X_i<span class="sc">$</span>mean2[summary_X_i<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;B&quot;</span>]</span>
-<span id="cb27-131"><a href="#cb27-131" aria-hidden="true" tabindex="-1"></a>    compare_means<span class="sc">$</span>mean1_difference_A_minus_B[i] <span class="ot">=</span> mean1_difference_A_minus_B</span>
-<span id="cb27-132"><a href="#cb27-132" aria-hidden="true" tabindex="-1"></a>    compare_means<span class="sc">$</span>mean2_difference_A_minus_B[i] <span class="ot">=</span> mean2_difference_A_minus_B</span>
-<span id="cb27-133"><a href="#cb27-133" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-134"><a href="#cb27-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-135"><a href="#cb27-135" aria-hidden="true" tabindex="-1"></a>X_1_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span>
-<span id="cb27-136"><a href="#cb27-136" aria-hidden="true" tabindex="-1"></a>X_1_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span>
-<span id="cb27-137"><a href="#cb27-137" aria-hidden="true" tabindex="-1"></a>X_1_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(compare_means<span class="sc">$</span>mean1_difference_A_minus_B)</span>
-<span id="cb27-138"><a href="#cb27-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-139"><a href="#cb27-139" aria-hidden="true" tabindex="-1"></a>X_2_hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span>
-<span id="cb27-140"><a href="#cb27-140" aria-hidden="true" tabindex="-1"></a>X_2_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span>
-<span id="cb27-141"><a href="#cb27-141" aria-hidden="true" tabindex="-1"></a>X_2_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(compare_means<span class="sc">$</span>mean2_difference_A_minus_B)</span>
-<span id="cb27-142"><a href="#cb27-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-143"><a href="#cb27-143" aria-hidden="true" tabindex="-1"></a>X_1_mean</span>
-<span id="cb27-144"><a href="#cb27-144" aria-hidden="true" tabindex="-1"></a>X_2_mean</span>
-<span id="cb27-145"><a href="#cb27-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-146"><a href="#cb27-146" aria-hidden="true" tabindex="-1"></a>X_1_sd</span>
-<span id="cb27-147"><a href="#cb27-147" aria-hidden="true" tabindex="-1"></a>X_2_sd</span>
-<span id="cb27-148"><a href="#cb27-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-149"><a href="#cb27-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-150"><a href="#cb27-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-151"><a href="#cb27-151" aria-hidden="true" tabindex="-1"></a>Yes, we observe consistent results. It almost appears that this follows a standard normal distribution.</span>
-<span id="cb27-152"><a href="#cb27-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-153"><a href="#cb27-153" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-154"><a href="#cb27-154" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb27-155"><a href="#cb27-155" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-156"><a href="#cb27-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-157"><a href="#cb27-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.2 {#a03-ex-3-2}</span></span>
-<span id="cb27-158"><a href="#cb27-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-159"><a href="#cb27-159" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-160"><a href="#cb27-160" aria-hidden="true" tabindex="-1"></a>Identify *treatments* and *experimental units* in the following scenarios.</span>
-<span id="cb27-161"><a href="#cb27-161" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-162"><a href="#cb27-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-163"><a href="#cb27-163" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a) City A {#a03-ex-3-2-a}</span></span>
-<span id="cb27-164"><a href="#cb27-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-165"><a href="#cb27-165" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-166"><a href="#cb27-166" aria-hidden="true" tabindex="-1"></a>City A would like to evaluate whether a new employment training program for the unemployed is more effective compared to the existing program. The City decides to run a pilot program for selected employment program applicants.</span>
-<span id="cb27-167"><a href="#cb27-167" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-168"><a href="#cb27-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-169"><a href="#cb27-169" aria-hidden="true" tabindex="-1"></a>Treatments</span>
-<span id="cb27-170"><a href="#cb27-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-171"><a href="#cb27-171" aria-hidden="true" tabindex="-1"></a>:   Existing Employment Training Program</span>
-<span id="cb27-172"><a href="#cb27-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-173"><a href="#cb27-173" aria-hidden="true" tabindex="-1"></a>:   New Employment Training Program</span>
-<span id="cb27-174"><a href="#cb27-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-175"><a href="#cb27-175" aria-hidden="true" tabindex="-1"></a>Experimental Units</span>
-<span id="cb27-176"><a href="#cb27-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-177"><a href="#cb27-177" aria-hidden="true" tabindex="-1"></a>:   Individual unemployed applicants</span>
-<span id="cb27-178"><a href="#cb27-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-179"><a href="#cb27-179" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-180"><a href="#cb27-180" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-181"><a href="#cb27-181" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-182"><a href="#cb27-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-183"><a href="#cb27-183" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b) Marketing Agency B {#a03-ex-3-2-b}</span></span>
-<span id="cb27-184"><a href="#cb27-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-185"><a href="#cb27-185" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-186"><a href="#cb27-186" aria-hidden="true" tabindex="-1"></a>Marketing Agency B creates and places targeted advertisements on video-sharing platforms for its clients. The Agency decides to run an experiment to compare the effectiveness of placing advertisements before vs. during vs. after videos.</span>
-<span id="cb27-187"><a href="#cb27-187" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-188"><a href="#cb27-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-189"><a href="#cb27-189" aria-hidden="true" tabindex="-1"></a>Treatments</span>
-<span id="cb27-190"><a href="#cb27-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-191"><a href="#cb27-191" aria-hidden="true" tabindex="-1"></a>:   Placing advertisement before videos</span>
-<span id="cb27-192"><a href="#cb27-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-193"><a href="#cb27-193" aria-hidden="true" tabindex="-1"></a>:   Placing advertisement during videos</span>
-<span id="cb27-194"><a href="#cb27-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-195"><a href="#cb27-195" aria-hidden="true" tabindex="-1"></a>:   Placing advertisement after videos</span>
-<span id="cb27-196"><a href="#cb27-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-197"><a href="#cb27-197" aria-hidden="true" tabindex="-1"></a>Experimental Units</span>
-<span id="cb27-198"><a href="#cb27-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-199"><a href="#cb27-199" aria-hidden="true" tabindex="-1"></a>:   Individuals targeted</span>
-<span id="cb27-200"><a href="#cb27-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-201"><a href="#cb27-201" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-202"><a href="#cb27-202" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-203"><a href="#cb27-203" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-204"><a href="#cb27-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-205"><a href="#cb27-205" aria-hidden="true" tabindex="-1"></a><span class="fu">### (c) Paul {#a03-ex-3-2-c}</span></span>
-<span id="cb27-206"><a href="#cb27-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-207"><a href="#cb27-207" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-208"><a href="#cb27-208" aria-hidden="true" tabindex="-1"></a>Paul enjoys baking and finds a new recipe for chocolate chip cookies. Paul decides to test it by bringing cookies baked using his current recipe and the new recipe to his study group. Each member of the group blindly tastes each kind and provides their ratings.</span>
-<span id="cb27-209"><a href="#cb27-209" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-210"><a href="#cb27-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-211"><a href="#cb27-211" aria-hidden="true" tabindex="-1"></a>Treatments</span>
-<span id="cb27-212"><a href="#cb27-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-213"><a href="#cb27-213" aria-hidden="true" tabindex="-1"></a>:   Current chocolate chip cookie recipe</span>
-<span id="cb27-214"><a href="#cb27-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-215"><a href="#cb27-215" aria-hidden="true" tabindex="-1"></a>:   New chocholate chip cookie recipe</span>
-<span id="cb27-216"><a href="#cb27-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-217"><a href="#cb27-217" aria-hidden="true" tabindex="-1"></a>Experimental Units</span>
-<span id="cb27-218"><a href="#cb27-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-219"><a href="#cb27-219" aria-hidden="true" tabindex="-1"></a>:   Individual tasting (each person $\times$ each recipe)</span>
-<span id="cb27-220"><a href="#cb27-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-221"><a href="#cb27-221" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-222"><a href="#cb27-222" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb27-223"><a href="#cb27-223" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-224"><a href="#cb27-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-225"><a href="#cb27-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.4 {#a03-ex-3-4}</span></span>
-<span id="cb27-226"><a href="#cb27-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-227"><a href="#cb27-227" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-228"><a href="#cb27-228" aria-hidden="true" tabindex="-1"></a>Consider the scenario in Example 3.1, and suppose that an investigator only has enough fertilizer A to use on four plots. Answer the following questions.</span>
-<span id="cb27-229"><a href="#cb27-229" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-230"><a href="#cb27-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-231"><a href="#cb27-231" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a) Individual {#a03-ex-3-4-a}</span></span>
-<span id="cb27-232"><a href="#cb27-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-233"><a href="#cb27-233" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-234"><a href="#cb27-234" aria-hidden="true" tabindex="-1"></a>What is the probability that an individual plot receives fertilizer A?</span>
-<span id="cb27-235"><a href="#cb27-235" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-236"><a href="#cb27-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-237"><a href="#cb27-237" aria-hidden="true" tabindex="-1"></a>$N_A = 4$, the number of experimental units assigned to treatment A\</span>
-<span id="cb27-238"><a href="#cb27-238" aria-hidden="true" tabindex="-1"></a>Assignment probability = $1/{{N}\choose{N_A}}$</span>
-<span id="cb27-239"><a href="#cb27-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-242"><a href="#cb27-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-243"><a href="#cb27-243" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="cb27-244"><a href="#cb27-244" aria-hidden="true" tabindex="-1"></a>N_A <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb27-245"><a href="#cb27-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-246"><a href="#cb27-246" aria-hidden="true" tabindex="-1"></a>assignmentProbability <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">choose</span>(N, N_A)</span>
-<span id="cb27-247"><a href="#cb27-247" aria-hidden="true" tabindex="-1"></a>assignmentProbability</span>
-<span id="cb27-248"><a href="#cb27-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-249"><a href="#cb27-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-250"><a href="#cb27-250" aria-hidden="true" tabindex="-1"></a>For plot $n_1$, how many times was it selected for fertilizer A?</span>
-<span id="cb27-251"><a href="#cb27-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-252"><a href="#cb27-252" aria-hidden="true" tabindex="-1"></a>$P(n_1 = A) =$ .... ?</span>
-<span id="cb27-253"><a href="#cb27-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-254"><a href="#cb27-254" aria-hidden="true" tabindex="-1"></a>If we fix plot 1 to A. Then the remaining 11 plots have ${11} \choose {3}$ ways of choosing the other A. Without the loss of generality, we have that the marginal probability will be</span>
-<span id="cb27-255"><a href="#cb27-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-258"><a href="#cb27-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb27-259"><a href="#cb27-259" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">11</span>,<span class="dv">3</span>)</span>
-<span id="cb27-260"><a href="#cb27-260" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">4</span>)</span>
-<span id="cb27-261"><a href="#cb27-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-262"><a href="#cb27-262" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">11</span>,<span class="dv">3</span>) <span class="sc">/</span> <span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">4</span>)</span>
-<span id="cb27-263"><a href="#cb27-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-264"><a href="#cb27-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb27-265"><a href="#cb27-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-266"><a href="#cb27-266" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-267"><a href="#cb27-267" aria-hidden="true" tabindex="-1"></a>\begin{gather}</span>
-<span id="cb27-268"><a href="#cb27-268" aria-hidden="true" tabindex="-1"></a>    \frac{{N-1} \choose {N_A} - 1}{N \choose N_A} <span class="sc">\\</span></span>
-<span id="cb27-269"><a href="#cb27-269" aria-hidden="true" tabindex="-1"></a>    = \frac{{11} \choose 3}{12 \choose 4} <span class="sc">\\</span></span>
-<span id="cb27-270"><a href="#cb27-270" aria-hidden="true" tabindex="-1"></a>    = \frac{165}{495} <span class="sc">\\</span></span>
-<span id="cb27-271"><a href="#cb27-271" aria-hidden="true" tabindex="-1"></a>    = \frac{1}{3}</span>
-<span id="cb27-272"><a href="#cb27-272" aria-hidden="true" tabindex="-1"></a>\end{gather}</span>
-<span id="cb27-273"><a href="#cb27-273" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-274"><a href="#cb27-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-275"><a href="#cb27-275" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-276"><a href="#cb27-276" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-277"><a href="#cb27-277" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-278"><a href="#cb27-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-279"><a href="#cb27-279" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b) Particular Treatment {#a03-ex-3-4-b}</span></span>
-<span id="cb27-280"><a href="#cb27-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-281"><a href="#cb27-281" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-282"><a href="#cb27-282" aria-hidden="true" tabindex="-1"></a>What is the probability of choosing the treatment assignment A, A, A, A, B, B, B, B, B, B, B, B?</span>
-<span id="cb27-283"><a href="#cb27-283" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-284"><a href="#cb27-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-285"><a href="#cb27-285" aria-hidden="true" tabindex="-1"></a>Assignment probability = </span>
-<span id="cb27-286"><a href="#cb27-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-287"><a href="#cb27-287" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-288"><a href="#cb27-288" aria-hidden="true" tabindex="-1"></a>\begin{gather}</span>
-<span id="cb27-289"><a href="#cb27-289" aria-hidden="true" tabindex="-1"></a>    \frac{1}{{N}\choose{N_A}} <span class="sc">\\</span></span>
-<span id="cb27-290"><a href="#cb27-290" aria-hidden="true" tabindex="-1"></a>    = \frac{1}{{12}\choose{4}} <span class="sc">\\</span></span>
-<span id="cb27-291"><a href="#cb27-291" aria-hidden="true" tabindex="-1"></a>    = \frac{1}{495} <span class="sc">\\</span></span>
-<span id="cb27-292"><a href="#cb27-292" aria-hidden="true" tabindex="-1"></a>    \approxeq 0.0020202</span>
-<span id="cb27-293"><a href="#cb27-293" aria-hidden="true" tabindex="-1"></a>\end{gather}</span>
-<span id="cb27-294"><a href="#cb27-294" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-295"><a href="#cb27-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-296"><a href="#cb27-296" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-297"><a href="#cb27-297" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb27-298"><a href="#cb27-298" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-299"><a href="#cb27-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-300"><a href="#cb27-300" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.11 {#a03-ex-3-11}</span></span>
-<span id="cb27-301"><a href="#cb27-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-302"><a href="#cb27-302" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-303"><a href="#cb27-303" aria-hidden="true" tabindex="-1"></a>Consider a randomized pair design with $n$ units where two treatments are randomly assigned to each unit, resulting in a pair of observations $(X_i, Y_i) \text{ for } i=1,...,n$ on each unit. Assume that $E<span class="co">[</span><span class="ot">X_i</span><span class="co">]</span> = \mu_X$, $E<span class="co">[</span><span class="ot">Y_i</span><span class="co">]</span> = \mu_Y$, and $\text{Var}(X_i) = \text{Var}(Y_i) = \sigma^2 \text{ for } i=1,...,n$. Alternatively, we may consider an unpaired design where we assign two independent treatment groups to $2n$ units.</span>
-<span id="cb27-304"><a href="#cb27-304" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-305"><a href="#cb27-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-306"><a href="#cb27-306" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a) Ratio of Variances {#a03-ex-3-11-a}</span></span>
-<span id="cb27-307"><a href="#cb27-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-308"><a href="#cb27-308" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-309"><a href="#cb27-309" aria-hidden="true" tabindex="-1"></a>Show that the ratio of the variances in the paired to the unpaired design is $1 - \rho$, where $\rho$ is the correlation between $X_i$ and $Y_i$.</span>
-<span id="cb27-310"><a href="#cb27-310" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-311"><a href="#cb27-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-312"><a href="#cb27-312" aria-hidden="true" tabindex="-1"></a>Let D be the paired (X - Y) Then</span>
-<span id="cb27-313"><a href="#cb27-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-314"><a href="#cb27-314" aria-hidden="true" tabindex="-1"></a>\$\$ \begin{align}</span>
-<span id="cb27-315"><a href="#cb27-315" aria-hidden="true" tabindex="-1"></a>Var(D) &amp; = Var(X - Y) <span class="sc">\\</span></span>
-<span id="cb27-316"><a href="#cb27-316" aria-hidden="true" tabindex="-1"></a>       &amp; = Var(X) + Var(Y) - 2Cov(X,Y) <span class="sc">\\</span></span>
-<span id="cb27-317"><a href="#cb27-317" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{1}{n}\left(\sigma_X^2 + \sigma_Y^2 - 2 \rho \sigma_X \sigma_Y \right) <span class="sc">\\</span></span>
-<span id="cb27-318"><a href="#cb27-318" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{1}{n}\left(2\sigma^2 - 2 \rho \sigma^2 \right)<span class="sc">\\</span></span>
-<span id="cb27-319"><a href="#cb27-319" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{2\sigma^2}{n}(1 - \rho)<span class="sc">\\</span></span>
-<span id="cb27-320"><a href="#cb27-320" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb27-321"><a href="#cb27-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-322"><a href="#cb27-322" aria-hidden="true" tabindex="-1"></a>\$\$</span>
-<span id="cb27-323"><a href="#cb27-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-324"><a href="#cb27-324" aria-hidden="true" tabindex="-1"></a>\$\$ \begin{align}</span>
-<span id="cb27-325"><a href="#cb27-325" aria-hidden="true" tabindex="-1"></a>Var(X - Y) &amp; = <span class="sc">\\</span></span>
-<span id="cb27-326"><a href="#cb27-326" aria-hidden="true" tabindex="-1"></a>       &amp; = Var(X) + Var(Y) <span class="sc">\\</span></span>
-<span id="cb27-327"><a href="#cb27-327" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y} <span class="sc">\\</span></span>
-<span id="cb27-328"><a href="#cb27-328" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{\sigma^2}{n} + \frac{\sigma^2}{n} <span class="sc">\\</span></span>
-<span id="cb27-329"><a href="#cb27-329" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{2\sigma^2}{n} </span>
-<span id="cb27-330"><a href="#cb27-330" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb27-331"><a href="#cb27-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-332"><a href="#cb27-332" aria-hidden="true" tabindex="-1"></a>\$\$</span>
-<span id="cb27-333"><a href="#cb27-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-334"><a href="#cb27-334" aria-hidden="true" tabindex="-1"></a>\$\$ \begin{align}</span>
-<span id="cb27-335"><a href="#cb27-335" aria-hidden="true" tabindex="-1"></a>A / B &amp; = <span class="sc">\\</span></span>
-<span id="cb27-336"><a href="#cb27-336" aria-hidden="true" tabindex="-1"></a>       &amp; = \frac{</span>
-<span id="cb27-337"><a href="#cb27-337" aria-hidden="true" tabindex="-1"></a>             \frac{2\sigma^2}{n}(1 - \rho) }</span>
-<span id="cb27-338"><a href="#cb27-338" aria-hidden="true" tabindex="-1"></a>            {\frac{2\sigma^2}{n} } <span class="sc">\\</span></span>
-<span id="cb27-339"><a href="#cb27-339" aria-hidden="true" tabindex="-1"></a>       &amp; = 1-\rho    </span>
-<span id="cb27-340"><a href="#cb27-340" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb27-341"><a href="#cb27-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-342"><a href="#cb27-342" aria-hidden="true" tabindex="-1"></a>\$\$</span>
-<span id="cb27-343"><a href="#cb27-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-344"><a href="#cb27-344" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-345"><a href="#cb27-345" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-346"><a href="#cb27-346" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-347"><a href="#cb27-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-348"><a href="#cb27-348" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b) Precision Requirements {#a03-ex-3-11-b}</span></span>
-<span id="cb27-349"><a href="#cb27-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-350"><a href="#cb27-350" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-351"><a href="#cb27-351" aria-hidden="true" tabindex="-1"></a>If $\rho = 0.5$, how many subjects are required in the unpaired design to yield the same precision as the paired design?</span>
-<span id="cb27-352"><a href="#cb27-352" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-353"><a href="#cb27-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-354"><a href="#cb27-354" aria-hidden="true" tabindex="-1"></a>TODO: Solution goes here</span>
-<span id="cb27-355"><a href="#cb27-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-356"><a href="#cb27-356" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-357"><a href="#cb27-357" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb27-358"><a href="#cb27-358" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-359"><a href="#cb27-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-360"><a href="#cb27-360" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercise 3.12 {#a03-ex-3-12}</span></span>
-<span id="cb27-361"><a href="#cb27-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-362"><a href="#cb27-362" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-363"><a href="#cb27-363" aria-hidden="true" tabindex="-1"></a>Suppose that two drugs A and B are to be tested on 12 subjects’ eyes. The drugs will be randomly assigned to the left eye or right eye based on the flip of a fair coin. If the coin toss is heads then a subject will receive drug A in their right eye. The coin was flipped 12 times and the following sequence of heads and tails was obtained: $$</span>
-<span id="cb27-364"><a href="#cb27-364" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-365"><a href="#cb27-365" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-366"><a href="#cb27-366" aria-hidden="true" tabindex="-1"></a>H \qquad</span>
-<span id="cb27-367"><a href="#cb27-367" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-368"><a href="#cb27-368" aria-hidden="true" tabindex="-1"></a>H \qquad</span>
-<span id="cb27-369"><a href="#cb27-369" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-370"><a href="#cb27-370" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-371"><a href="#cb27-371" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-372"><a href="#cb27-372" aria-hidden="true" tabindex="-1"></a>H \qquad</span>
-<span id="cb27-373"><a href="#cb27-373" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-374"><a href="#cb27-374" aria-hidden="true" tabindex="-1"></a>T \qquad</span>
-<span id="cb27-375"><a href="#cb27-375" aria-hidden="true" tabindex="-1"></a>H</span>
-<span id="cb27-376"><a href="#cb27-376" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb27-377"><a href="#cb27-377" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-378"><a href="#cb27-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-379"><a href="#cb27-379" aria-hidden="true" tabindex="-1"></a><span class="fu">### (a) Treatment Allocation {#a03-ex-3-12-a}</span></span>
-<span id="cb27-380"><a href="#cb27-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-381"><a href="#cb27-381" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-382"><a href="#cb27-382" aria-hidden="true" tabindex="-1"></a>Create a table that shows how the treatments will be allocated to the 12 subjects&#39; left and right eyes.</span>
-<span id="cb27-383"><a href="#cb27-383" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-384"><a href="#cb27-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-385"><a href="#cb27-385" aria-hidden="true" tabindex="-1"></a>TODO: Solution goes here</span>
-<span id="cb27-386"><a href="#cb27-386" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-387"><a href="#cb27-387" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-388"><a href="#cb27-388" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-389"><a href="#cb27-389" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-390"><a href="#cb27-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-391"><a href="#cb27-391" aria-hidden="true" tabindex="-1"></a><span class="fu">### (b) Probability {#a03-ex-3-12-b}</span></span>
-<span id="cb27-392"><a href="#cb27-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-393"><a href="#cb27-393" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-394"><a href="#cb27-394" aria-hidden="true" tabindex="-1"></a>What is the probability of obtaining this treatment allocation?</span>
-<span id="cb27-395"><a href="#cb27-395" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-396"><a href="#cb27-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-397"><a href="#cb27-397" aria-hidden="true" tabindex="-1"></a>TODO: Solution goes here</span>
-<span id="cb27-398"><a href="#cb27-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-399"><a href="#cb27-399" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-400"><a href="#cb27-400" aria-hidden="true" tabindex="-1"></a>□</span>
-<span id="cb27-401"><a href="#cb27-401" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-402"><a href="#cb27-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-403"><a href="#cb27-403" aria-hidden="true" tabindex="-1"></a><span class="fu">### (c) Experimental Design {#a03-ex-3-12-c}</span></span>
-<span id="cb27-404"><a href="#cb27-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-405"><a href="#cb27-405" aria-hidden="true" tabindex="-1"></a>::: {.callout-note appearance=&quot;simple&quot; title=&quot;Exercise Instructions&quot;}</span>
-<span id="cb27-406"><a href="#cb27-406" aria-hidden="true" tabindex="-1"></a>What type of experimental design has been used to assign treatments to subjects? Explain.</span>
-<span id="cb27-407"><a href="#cb27-407" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb27-408"><a href="#cb27-408" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-409"><a href="#cb27-409" aria-hidden="true" tabindex="-1"></a>TODO: Solution goes here</span>
-<span id="cb27-410"><a href="#cb27-410" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-411"><a href="#cb27-411" aria-hidden="true" tabindex="-1"></a>::: end-question</span>
-<span id="cb27-412"><a href="#cb27-412" aria-hidden="true" tabindex="-1"></a>■</span>
-<span id="cb27-413"><a href="#cb27-413" aria-hidden="true" tabindex="-1"></a>:::</span>
-</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></div>
-</div></div></div></div></div>
+  </script>
 </div> <!-- /content -->
 
 
 
 
-<script>!function(t,e){"function"==typeof define&&define.amd?define([],e()):"object"==typeof module&&module.exports?module.exports=e():function n(){document&&document.body?t.zenscroll=e():setTimeout(n,9)}()}(this,function(){"use strict";var t=function(t){return t&&"getComputedStyle"in window&&"smooth"===window.getComputedStyle(t)["scroll-behavior"]};if("undefined"==typeof window||!("document"in window))return{};var e=function(e,n,o){n=n||999,o||0===o||(o=9);var i,r=function(t){i=t},u=function(){clearTimeout(i),r(0)},c=function(t){return Math.max(0,e.getTopOf(t)-o)},a=function(o,i,c){if(u(),0===i||i&&i<0||t(e.body))e.toY(o),c&&c();else{var a=e.getY(),f=Math.max(0,o)-a,s=(new Date).getTime();i=i||Math.min(Math.abs(f),n),function t(){r(setTimeout(function(){var n=Math.min(1,((new Date).getTime()-s)/i),o=Math.max(0,Math.floor(a+f*(n<.5?2*n*n:n*(4-2*n)-1)));e.toY(o),n<1&&e.getHeight()+o<e.body.scrollHeight?t():(setTimeout(u,99),c&&c())},9))}()}},f=function(t,e,n){a(c(t),e,n)},s=function(t,n,i){var r=t.getBoundingClientRect().height,u=e.getTopOf(t)+r,s=e.getHeight(),l=e.getY(),d=l+s;c(t)<l||r+o>s?f(t,n,i):u+o>d?a(u-s+o,n,i):i&&i()},l=function(t,n,o,i){a(Math.max(0,e.getTopOf(t)-e.getHeight()/2+(o||t.getBoundingClientRect().height/2)),n,i)};return{setup:function(t,e){return(0===t||t)&&(n=t),(0===e||e)&&(o=e),{defaultDuration:n,edgeOffset:o}},to:f,toY:a,intoView:s,center:l,stop:u,moving:function(){return!!i},getY:e.getY,getTopOf:e.getTopOf}},n=document.documentElement,o=function(){return window.scrollY||n.scrollTop},i=e({body:document.scrollingElement||document.body,toY:function(t){window.scrollTo(0,t)},getY:o,getHeight:function(){return window.innerHeight||n.clientHeight},getTopOf:function(t){return t.getBoundingClientRect().top+o()-n.offsetTop}});if(i.createScroller=function(t,o,i){return e({body:t,toY:function(e){t.scrollTop=e},getY:function(){return t.scrollTop},getHeight:function(){return Math.min(t.clientHeight,window.innerHeight||n.clientHeight)},getTopOf:function(t){return t.offsetTop}},o,i)},"addEventListener"in window&&!window.noZensmooth&&!t(document.body)){var r="history"in window&&"pushState"in history,u=r&&"scrollRestoration"in history;u&&(history.scrollRestoration="auto"),window.addEventListener("load",function(){u&&(setTimeout(function(){history.scrollRestoration="manual"},9),window.addEventListener("popstate",function(t){t.state&&"zenscrollY"in t.state&&i.toY(t.state.zenscrollY)},!1)),window.location.hash&&setTimeout(function(){var t=i.setup().edgeOffset;if(t){var e=document.getElementById(window.location.href.split("#")[1]);if(e){var n=Math.max(0,i.getTopOf(e)-t),o=i.getY()-n;0<=o&&o<9&&window.scrollTo(0,n)}}},9)},!1);var c=new RegExp("(^|\\s)noZensmooth(\\s|$)");window.addEventListener("click",function(t){for(var e=t.target;e&&"A"!==e.tagName;)e=e.parentNode;if(!(!e||1!==t.which||t.shiftKey||t.metaKey||t.ctrlKey||t.altKey)){if(u){var n=history.state&&"object"==typeof history.state?history.state:{};n.zenscrollY=i.getY();try{history.replaceState(n,"")}catch(t){}}var o=e.getAttribute("href")||"";if(0===o.indexOf("#")&&!c.test(e.className)){var a=0,f=document.getElementById(o.substring(1));if("#"!==o){if(!f)return;a=i.getTopOf(f)}t.preventDefault();var s=function(){window.location=o},l=i.setup().edgeOffset;l&&(a=Math.max(0,a-l),r&&(s=function(){history.pushState({},"",o)})),i.toY(a,null,s)}}},!1)}return i});</script>
 </body></html>

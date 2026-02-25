@@ -1,0 +1,231 @@
+---
+title: "Stats Core — Symbols, Definitions, Identities (Master Sheet)"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    embed-resources: true
+---
+
+> **Notation discipline (3 layers):**
+>
+> -   **Parameters** (fixed, unknown): e.g. $\mu,\ \sigma^2,\ p,\ \theta$
+> -   **Estimators** (random variables): e.g. $\bar{X},\ S^2,\ \hat{\theta}$
+> -   **Observed values** (realizations): e.g. $\bar{x},\ s^2,\ \hat{\theta}(x)$
+
+------------------------------------------------------------------------
+
+## 1. Scope and sizes
+
+### 1.1 Population vs sample size
+
+-   Population size (finite population): $N$
+-   Sample size: $n$
+
+> In most classical settings, $n$ is fixed by design (not random).
+
+------------------------------------------------------------------------
+
+## 2. Algebra rules used everywhere
+
+These are the simple algebra moves that later create the “$+2\operatorname{Cov}$ vs $-2\operatorname{Cov}$” pattern.
+
+### 2.1 Commutativity and associativity
+
+-   $X + Y = Y + X$
+-   $(X + Y) + Z = X + (Y + Z)$
+
+### 2.2 Subtraction as addition of a negative
+
+-   $X - Y = X + (-Y)$
+-   $(-Y) + X = X + (-Y)$
+
+### 2.3 Distributivity / scaling
+
+-   $a(X + Y) = aX + aY$
+-   $a(X - Y) = aX - aY$
+
+------------------------------------------------------------------------
+
+## 3. Expectation (definition + rules)
+
+### 3.1 Parameter definition (mean)
+
+$\mu = E[X]$
+
+### 3.2 Linearity rules
+
+$E[aX + b] = aE[X] + b$
+$E[X + Y] = E[X] + E[Y]$
+
+------------------------------------------------------------------------
+
+## 4. Variance (definition + rules)
+
+### 4.1 Parameter definition (variance)
+
+$\sigma^2 = \operatorname{Var}(X) = E[(X-\mu)^2]$
+
+### 4.2 Alternate (computational) form
+
+$\operatorname{Var}(X) = E[X^2] - (E[X])^2$
+
+### 4.3 Scaling and shifting
+
+$\operatorname{Var}(aX) = a^2\operatorname{Var}(X)$
+$\operatorname{Var}(aX + b) = a^2\operatorname{Var}(X)$
+
+------------------------------------------------------------------------
+
+## 5. Covariance and correlation (definitions + rules)
+
+### 5.1 Covariance definition
+
+$\operatorname{Cov}(X,Y)=E[(X-\mu_X)(Y-\mu_Y)]$
+
+### 5.2 Alternate form
+
+$\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$
+
+### 5.3 Key identities
+
+$\operatorname{Var}(X)=\operatorname{Cov}(X,X)$
+$\operatorname{Cov}(aX+b, cY+d)=ac \operatorname{Cov}(X,Y)$
+
+### 5.4 Correlation definition
+
+$$
+\rho_{X,Y}=\frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y},
+    \qquad\text{ for } \sigma_X\sigma_Y>0,
+    \quad\text{ where } -1\le \rho_{X,Y}\le 1
+$$
+
+### 5.5 Independence rule (and the common trap)
+
+$[ X\perp Y  \Rightarrow \operatorname{Cov}(X,Y)=0 ] But $\operatorname{Cov}(X,Y)=0$ **does not** generally imply independence.$
+
+------------------------------------------------------------------------
+
+## 6. Variance of sums and differences (the “sign flip”)
+
+This section is the exact “rule of some kind” you noticed.
+
+### 6.1 Core identity
+
+[ \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2\operatorname{Cov}(X,Y) ]
+
+### 6.2 Difference identity (why the sign flips)
+
+Start from subtraction-as-addition: [ X-Y = X+(-Y) ] Now apply the sum rule: [ \operatorname{Var}(X-Y) = \operatorname{Var}(X)+\operatorname{Var}(-Y)+2\operatorname{Cov}(X,-Y) ] Use scaling for variance and covariance: [ \operatorname{Var}(-Y)=(-1)^2\operatorname{Var}(Y)=\operatorname{Var}(Y) ] [ \operatorname{Cov}(X,-Y)=(-1)\operatorname{Cov}(X,Y)=-\operatorname{Cov}(X,Y) ] Therefore: [ \boxed{\operatorname{Var}(X-Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)-2\operatorname{Cov}(X,Y)} ]
+
+### 6.3 Independence simplifications
+
+If $X\perp Y$, then $\operatorname{Cov}(X,Y)=0$ and: [ \operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y) ] [ \operatorname{Var}(X-Y)=\operatorname{Var}(X)+\operatorname{Var}(Y) ]
+
+------------------------------------------------------------------------
+
+## 7. Sample mean and its variability
+
+### 7.1 Estimator (random variable)
+
+[ \bar{X}=\frac{1}{n}\sum_{i=1}^{n}X_i ]
+
+### 7.2 Observed value (realization)
+
+[ \bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i ]
+
+### 7.3 Sampling variance (i.i.d. case)
+
+If $X_1,\dots,X_n$ are i.i.d. with $\operatorname{Var}(X_i)=\sigma^2$: [ \operatorname{Var}(\bar{X})=\frac{\sigma^2}{n} ]
+
+### 7.4 General “variance of an average” pattern
+
+If $\bar{Z}=\frac{1}{n}\sum_{i=1}^n Z_i$ and $Z_i$ are i.i.d. with variance $\operatorname{Var}(Z)=\tau^2$: [ \operatorname{Var}(\bar{Z})=\frac{\tau^2}{n} ]
+
+------------------------------------------------------------------------
+
+## 8. Sample variance (parameter / estimator / observed)
+
+### 8.1 Parameter
+
+[ \sigma^2=\operatorname{Var}(X) ]
+
+### 8.2 Estimator (random variable)
+
+[ S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-^\bar{X})2 ]
+
+### 8.3 Observed value
+
+[ s^2=\frac{1}{n-1}\sum_{i=1}^{n}(x_i-^\bar{x})2 ]
+
+### 8.4 Unbiasedness
+
+[ E[S^2]=\sigma^2 ]
+
+------------------------------------------------------------------------
+
+## 9. Paired vs independent comparisons
+
+### 9.1 Paired differences
+
+Define paired differences: [ D_i = X_i - Y_i ] Then: [ \operatorname{Var}(D)=\sigma_X^2+\sigma_Y^2-2\operatorname{Cov}(X,Y) ] and (i.i.d. pairs): [ \operatorname{Var}(\bar{D})=\frac{\operatorname{Var}(D)}{n} ]
+
+### 9.2 Independent sample means
+
+If $\bar{X}$ from sample size $n_X$ and $\bar{Y}$ from sample size $n_Y$, and the samples are independent: [ \operatorname{Var}(\bar{X}-\bar{Y})= \frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y} ]
+
+------------------------------------------------------------------------
+
+## 10. Proportions (Bernoulli core)
+
+### 10.1 Parameter
+
+If $X\in\{0,1\}$ (Bernoulli), then: [ p=P(X=1) ]
+
+### 10.2 Mean and variance
+
+[ E[X]=p,\qquad \operatorname{Var}(X)=p(1-p) ]
+
+### 10.3 Estimator and sampling variance
+
+[ \hat{p}=\bar{X} ] [ \operatorname{Var}(\hat{p})=\frac{p(1-p)}{n} ]
+
+------------------------------------------------------------------------
+
+## 11. Bias, variance, and MSE (with definitions first)
+
+This section fixes the “introduced without definition” issue.
+
+### 11.1 Bias (definition)
+
+Let $\hat{\theta}$ be an estimator (random variable) of parameter $\theta$.
+
+[ \operatorname{Bias}(\hat{\theta}) = E[\hat{\theta}] - \theta ]
+
+-   Unbiased means $\operatorname{Bias}(\hat{\theta})=0$ (equivalently $E[\hat{\theta}]=\theta$).
+
+### 11.2 Mean Squared Error (definition)
+
+[ \operatorname{MSE}(\hat{\theta}) = E\big[(\hat{\theta}-\theta)^2\big]]
+
+### 11.3 MSE decomposition (identity)
+
+[ \boxed{\operatorname{MSE}(\hat{\theta})=\operatorname{Var}(\hat{\theta})+\operatorname{Bias}(\hat{\theta})^2} ]
+
+------------------------------------------------------------------------
+
+## 12. Optional: CLT form (one-line reference)
+
+If $X_1,\dots,X_n$ are i.i.d. with mean $\mu$ and variance $\sigma^2$: [ \bar{X}\approx N\left(\mu,\frac{\sigma^2}{n}\right) ]
+
+------------------------------------------------------------------------
+
+## 13. Tiny “notation constitution” (quick reference)
+
+-   Parameter: $\theta,\ \mu,\ \sigma^2,\ p$ (fixed unknown)
+-   Estimator (random): $\hat{\theta},\ \bar{X},\ S^2$ (functions of $X_1,\dots,X_n$)
+-   Observed value: $\hat{\theta}(x),\ \bar{x},\ s^2$ (numbers after data)
+-   Population size: $N$
+-   Sample size: $n$

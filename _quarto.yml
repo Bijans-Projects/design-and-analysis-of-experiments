@@ -11,7 +11,9 @@ website:
     - text: Home
       href: index.qmd
     - text: Exploration
-      href: examples-and-exercises.qmd  
+      href: examples-and-exercises.qmd
+    - text: stats-basics.qmd
+    - text: stats-basics-alt.qmd
     - text: Assignments
       menu:
         - text: Simulation and Computation

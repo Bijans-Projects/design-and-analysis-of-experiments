@@ -1,0 +1,176 @@
+---
+title: "STAT 4240 – Test 1 Cheat Sheet"
+---
+
+## STUDY DESIGN
+
+Response = outcome measured  
+Factor = explanatory variable  
+Treatment = level/combo of factors  
+Experimental Unit = smallest unit receiving treatment  
+Covariate = measured but not manipulated  
+
+Randomization → removes systematic bias  
+Replication → reduces variance  
+Control → fair comparison  
+
+Observational → assignment mechanism unknown  
+Experimental → assignment mechanism controlled  
+
+## RANDOM VARIABLES
+
+$X$ random variable  
+$x$ observed value  
+$\bar X = \frac{1}{n} \sum X_i$  
+$\bar x$ observed mean  
+
+### PMF
+$P(X=x)$, $\sum p(x)=1$
+
+### PDF
+$f(x)\ge0$, $\int f(x)dx=1$
+
+### CDF
+$F(x)=P(X\le x)$
+
+## DISTRIBUTIONS
+
+### Bernoulli(p)
+$E=p$  
+$Var=p(1-p)$
+
+### Binomial(n,p)
+$P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$  
+$E=np$  
+$Var=np(1-p)$
+
+### Normal($\mu,\sigma^2$)
+$E=\mu$, $Var=\sigma^2$  
+
+Standardize:
+$Z=\frac{X-\mu}{\sigma}$
+
+
+## EXPECTATION & VARIANCE
+
+$E(aX+b)=aE(X)+b$  
+$Var(aX+b)=a^2Var(X)$
+
+$Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y)$  
+$Var(X-Y)=Var(X)+Var(Y)-2Cov(X,Y)$
+
+$Cov(aX,bY)=abCov(X,Y)$
+
+$\rho=\frac{Cov(X,Y)}{\sigma_X\sigma_Y}$
+
+If independent → $Cov=0$
+
+## SAMPLE MEAN
+
+$\bar X=\frac{1}{n}\sum X_i$
+
+$E(\bar X)=\mu$  
+$Var(\bar X)=\frac{\sigma^2}{n}$  
+$SD(\bar X)=\frac{\sigma}{\sqrt n}$
+
+$Var(a\bar X+b)=a^2\frac{\sigma^2}{n}$
+
+Sample variance:
+$S^2=\frac{1}{n-1}\sum (X_i-\bar X)^2$
+
+If normal & $\sigma$ unknown:
+$T=\frac{\bar X-\mu}{S/\sqrt n} \sim t_{n-1}$
+
+## HYPOTHESIS TESTING
+
+$H_0: \theta=\theta_0$  
+$H_A: \neq, >, <$
+
+Mean (σ known):
+$z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}$
+
+Reject (two-sided):
+$|z|>z_{\alpha/2}$
+
+Type I = $\alpha$  
+Type II = $\beta$  
+Power = $1-\beta$  
+
+Empirical Rule:  
+1 SD → 68%  
+2 SD → 95%  
+3 SD → 99.7%  
+
+
+## PROPORTIONS
+
+$\hat p=\frac{X}{n}$
+
+$E(\hat p)=p$  
+$Var(\hat p)=\frac{p(1-p)}{n}$
+
+Test:
+$z=\frac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}$
+
+CI:
+$\hat p \pm z_{\alpha/2}\sqrt{\frac{\hat p(1-\hat p)}{n}}$
+
+Sample size:
+$n=\frac{z^2 p(1-p)}{m^2}$
+
+Worst case → $p=0.5$
+
+
+## TWO TREATMENTS
+
+Unpaired:
+$Var=\frac{\sigma_A^2}{n_A}+\frac{\sigma_B^2}{n_B}$
+
+Balanced:
+$\frac{\sigma_A^2+\sigma_B^2}{n}$
+
+Equal variances:
+$\frac{2\sigma^2}{n}$
+
+Paired:
+$Var(\bar D)=\frac{\sigma_A^2+\sigma_B^2-2Cov(X,Y)}{n}$
+
+Paired better if $Cov>0$
+
+
+## CRD
+
+$\binom{N}{N_A}=\frac{N!}{N_A!(N-N_A)!}$
+
+Each assignment:
+$1/\binom{N}{N_A}$
+
+Propensity:
+$P(W_i=1)=\frac{N_A}{N}$
+
+Units $i$ and $j$ both treated:
+$\frac{\binom{N-2}{N_A-2}}{\binom{N}{N_A}}$
+
+
+## POWER (One-Sided Mean)
+
+Reject if:
+$\bar X>\mu_0+z_\alpha\frac{\sigma}{\sqrt n}$
+
+Under $\mu_1$:
+$Z\sim N\left(\frac{\mu_1-\mu_0}{\sigma/\sqrt n},1\right)$
+
+Power:
+$P\left(Z>z_\alpha-\frac{\mu_1-\mu_0}{\sigma/\sqrt n}\right)$
+
+
+## INTERPRETATION
+
+Confidence:
+“If repeated many times, ___% of intervals contain the true parameter.”
+
+p-value:
+“If $H_0$ were true, this extreme would occur with probability ___.”
+
+Reject if $p<\alpha$.
+
