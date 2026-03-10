@@ -32,10 +32,10 @@
     },
     "DBI": {
       "Package": "DBI",
-      "Version": "1.2.3",
+      "Version": "1.3.0",
       "Source": "Repository",
       "Title": "R Database Interface",
-      "Date": "2024-06-02",
+      "Date": "2026-02-11",
       "Authors@R": "c( person(\"R Special Interest Group on Databases (R-SIG-DB)\", role = \"aut\"), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Kirill\", \"Müller\", , \"kirill@cynkra.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-1416-3412\")), person(\"R Consortium\", role = \"fnd\") )",
       "Description": "A database interface definition for communication between R and relational database management systems.  All classes in this package are virtual and need to be extended by the various R/DBMS implementations.",
       "License": "LGPL (>= 2.1)",
@@ -48,8 +48,9 @@
       "Suggests": [
         "arrow",
         "blob",
+        "callr",
         "covr",
-        "DBItest",
+        "DBItest (>= 1.8.2)",
         "dbplyr",
         "downlit",
         "dplyr",
@@ -58,6 +59,8 @@
         "knitr",
         "magrittr",
         "nanoarrow (>= 0.3.0.1)",
+        "otel",
+        "otelsdk",
         "RMariaDB",
         "rmarkdown",
         "rprojroot",
@@ -70,12 +73,12 @@
       "Config/autostyle/scope": "line_breaks",
       "Config/autostyle/strict": "false",
       "Config/Needs/check": "r-dbi/DBItest",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.1",
       "Config/Needs/website": "r-dbi/DBItest, r-dbi/dbitemplate, adbi, AzureKusto, bigrquery, DatabaseConnector, dittodb, duckdb, implyr, lazysf, odbc, pool, RAthena, IMSMWU/RClickhouse, RH2, RJDBC, RMariaDB, RMySQL, RPostgres, RPostgreSQL, RPresto, RSQLite, sergeant, sparklyr, withr",
       "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3.9000",
       "NeedsCompilation": "no",
-      "Author": "R Special Interest Group on Databases (R-SIG-DB) [aut], Hadley Wickham [aut], Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>), R Consortium [fnd]",
+      "Author": "R Special Interest Group on Databases (R-SIG-DB) [aut], Hadley Wickham [aut], Kirill Müller [aut, cre] (ORCID: <https://orcid.org/0000-0002-1416-3412>), R Consortium [fnd]",
       "Maintainer": "Kirill Müller <kirill@cynkra.com>",
       "Repository": "P3M"
     },
@@ -1126,6 +1129,23 @@
       "Maintainer": "Matthew Lincoln <matthew.d.lincoln@gmail.com>",
       "Repository": "P3M"
     },
+    "codetools": {
+      "Package": "codetools",
+      "Version": "0.2-20",
+      "Source": "Repository",
+      "Priority": "recommended",
+      "Author": "Luke Tierney <luke-tierney@uiowa.edu>",
+      "Description": "Code analysis tools for R.",
+      "Title": "Code Analysis Tools for R",
+      "Depends": [
+        "R (>= 2.1)"
+      ],
+      "Maintainer": "Luke Tierney <luke-tierney@uiowa.edu>",
+      "URL": "https://gitlab.com/luke-tierney/codetools",
+      "License": "GPL",
+      "NeedsCompilation": "no",
+      "Repository": "CRAN"
+    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "2.1-2",
@@ -1250,7 +1270,7 @@
     },
     "countrycode": {
       "Package": "countrycode",
-      "Version": "1.6.1",
+      "Version": "1.7.0",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Convert Country Names and Country Codes",
@@ -1273,11 +1293,11 @@
       "Encoding": "UTF-8",
       "LazyData": "yes",
       "LazyLoad": "yes",
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "NeedsCompilation": "no",
-      "Author": "Vincent Arel-Bundock [aut, cre] (<https://orcid.org/0000-0003-2042-7063>), CJ Yetman [ctb] (<https://orcid.org/0000-0001-5099-9500>), Nils Enevoldsen [ctb] (<https://orcid.org/0000-0001-7195-4117>), Etienne Bacher [ctb] (<https://orcid.org/0000-0002-9271-5075>), Samuel Meichtry [ctb] (<https://orcid.org/0000-0003-2165-791X>)",
+      "Author": "Vincent Arel-Bundock [aut, cre] (ORCID: <https://orcid.org/0000-0003-2042-7063>), CJ Yetman [ctb] (ORCID: <https://orcid.org/0000-0001-5099-9500>), Nils Enevoldsen [ctb] (ORCID: <https://orcid.org/0000-0001-7195-4117>), Etienne Bacher [ctb] (ORCID: <https://orcid.org/0000-0002-9271-5075>), Samuel Meichtry [ctb] (ORCID: <https://orcid.org/0000-0003-2165-791X>)",
       "Maintainer": "Vincent Arel-Bundock <vincent.arel-bundock@umontreal.ca>",
-      "Repository": "RSPM"
+      "Repository": "P3M"
     },
     "cpp11": {
       "Package": "cpp11",
@@ -1686,11 +1706,11 @@
     },
     "emmeans": {
       "Package": "emmeans",
-      "Version": "2.0.1",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Estimated Marginal Means, aka Least-Squares Means",
-      "Date": "2025-12-10",
+      "Date": "2026-02-20",
       "Authors@R": "c(person(\"Russell V.\", \"Lenth\", role = c(\"aut\", \"cph\"),  email = \"russell-lenth@uiowa.edu\"), person(\"Julia\", \"Piaskowski\", role = c(\"cre\", \"aut\"), email = \"julia.piask@gmail.com\"), person(\"Balazs\", \"Banfai\", role = \"ctb\"), person(\"Ben\", \"Bolker\", role = \"ctb\"), person(\"Paul\", \"Buerkner\", role = \"ctb\"), person(\"Iago\", \"Giné-Vázquez\", role = \"ctb\"), person(\"Maxime\", \"Hervé\", role = \"ctb\"), person(\"Maarten\", \"Jung\", role = \"ctb\"), person(\"Jonathon\", \"Love\", role = \"ctb\"), person(\"Fernando\", \"Miguez\", role = \"ctb\"), person(\"Hannes\", \"Riebl\", role = \"ctb\"), person(\"Henrik\", \"Singmann\", role = \"ctb\"))",
       "Maintainer": "Julia Piaskowski <julia.piask@gmail.com>",
       "Depends": [
@@ -1753,7 +1773,7 @@
         "sommer",
         "survival"
       ],
-      "URL": "https://rvlenth.github.io/emmeans/,https://rvlenth.github.io/emmeans/",
+      "URL": "https://rvlenth.github.io/emmeans/, https://github.com/rvlenth/emmeans/",
       "BugReports": "https://github.com/rvlenth/emmeans/issues",
       "LazyData": "yes",
       "ByteCompile": "yes",
@@ -2085,16 +2105,16 @@
     },
     "fs": {
       "Package": "fs",
-      "Version": "1.6.6",
+      "Version": "1.6.7",
       "Source": "Repository",
       "Title": "Cross-Platform File System Operations Based on 'libuv'",
-      "Authors@R": "c( person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\"), person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"libuv project contributors\", role = \"cph\", comment = \"libuv library\"), person(\"Joyent, Inc. and other Node contributors\", role = \"cph\", comment = \"libuv library\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Authors@R": "c( person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Gábor\", \"Csárdi\", role = \"aut\"), person(\"Jeroen\", \"Ooms\", , \"jeroenooms@gmail.com\", role = \"cre\"), person(\"libuv project contributors\", role = \"cph\", comment = \"libuv library\"), person(\"Joyent, Inc. and other Node contributors\", role = \"cph\", comment = \"libuv library\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"), comment = c(ROR = \"03wc8by49\")) )",
       "Description": "A cross-platform interface to file system operations, built on top of the 'libuv' C library.",
       "License": "MIT + file LICENSE",
       "URL": "https://fs.r-lib.org, https://github.com/r-lib/fs",
       "BugReports": "https://github.com/r-lib/fs/issues",
       "Depends": [
-        "R (>= 3.6)"
+        "R (>= 4.1)"
       ],
       "Imports": [
         "methods"
@@ -2115,14 +2135,96 @@
       "ByteCompile": "true",
       "Config/Needs/website": "tidyverse/tidytemplate",
       "Config/testthat/edition": "3",
+      "Config/usethis/last-upkeep": "2025-04-23",
       "Copyright": "file COPYRIGHTS",
       "Encoding": "UTF-8",
       "Language": "en-US",
-      "RoxygenNote": "7.2.3",
+      "RoxygenNote": "7.3.3",
       "SystemRequirements": "GNU make",
       "NeedsCompilation": "yes",
-      "Author": "Jim Hester [aut], Hadley Wickham [aut], Gábor Csárdi [aut, cre], libuv project contributors [cph] (libuv library), Joyent, Inc. and other Node contributors [cph] (libuv library), Posit Software, PBC [cph, fnd]",
-      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+      "Author": "Jim Hester [aut], Hadley Wickham [aut], Gábor Csárdi [aut], Jeroen Ooms [cre], libuv project contributors [cph] (libuv library), Joyent, Inc. and other Node contributors [cph] (libuv library), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
+      "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+      "Repository": "P3M"
+    },
+    "furrr": {
+      "Package": "furrr",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Title": "Apply Mapping Functions in Parallel using Futures",
+      "Authors@R": "c( person(\"Davis\", \"Vaughan\", , \"davis@rstudio.com\", role = c(\"aut\", \"cre\")), person(\"Matt\", \"Dancho\", , \"mdancho@business-science.io\", role = \"aut\"), person(\"RStudio\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "Implementations of the family of map() functions from 'purrr' that can be resolved using any 'future'-supported backend, e.g. parallel on the local machine or distributed on a compute cluster.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://github.com/DavisVaughan/furrr, https://furrr.futureverse.org/",
+      "BugReports": "https://github.com/DavisVaughan/furrr/issues",
+      "Depends": [
+        "future (>= 1.25.0)",
+        "R (>= 3.4.0)"
+      ],
+      "Imports": [
+        "globals (>= 0.14.0)",
+        "lifecycle (>= 1.0.1)",
+        "purrr (>= 0.3.4)",
+        "rlang (>= 1.0.2)",
+        "vctrs (>= 0.4.1)"
+      ],
+      "Suggests": [
+        "carrier",
+        "covr",
+        "dplyr (>= 0.7.4)",
+        "knitr",
+        "listenv (>= 0.6.0)",
+        "magrittr",
+        "rmarkdown",
+        "testthat (>= 3.0.0)",
+        "tidyselect",
+        "withr"
+      ],
+      "Config/Needs/website": "progressr",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.1",
+      "NeedsCompilation": "no",
+      "Author": "Davis Vaughan [aut, cre], Matt Dancho [aut], RStudio [cph, fnd]",
+      "Maintainer": "Davis Vaughan <davis@rstudio.com>",
+      "Repository": "P3M"
+    },
+    "future": {
+      "Package": "future",
+      "Version": "1.69.0",
+      "Source": "Repository",
+      "Title": "Unified Parallel and Distributed Processing in R for Everyone",
+      "Depends": [
+        "R (>= 3.2.0)"
+      ],
+      "Imports": [
+        "digest",
+        "globals (>= 0.18.0)",
+        "listenv (>= 0.8.0)",
+        "parallel",
+        "parallelly (>= 1.44.0)",
+        "utils"
+      ],
+      "Suggests": [
+        "methods",
+        "RhpcBLASctl",
+        "R.rsp",
+        "markdown"
+      ],
+      "VignetteBuilder": "R.rsp",
+      "Authors@R": "c(person(\"Henrik\", \"Bengtsson\", role = c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\", comment = c(ORCID = \"0000-0002-7579-5165\")))",
+      "Description": "The purpose of this package is to provide a lightweight and unified Future API for sequential and parallel processing of R expression via futures.  The simplest way to evaluate an expression in parallel is to use `x %<-% { expression }` with `plan(multisession)`. This package implements sequential, multicore, multisession, and cluster futures.  With these, R expressions can be evaluated on the local machine, in parallel a set of local machines, or distributed on a mix of local and remote machines. Extensions to this package implement additional backends for processing futures via compute cluster schedulers, etc. Because of its unified API, there is no need to modify any code in order switch from sequential on the local machine to, say, distributed processing on a remote compute cluster. Another strength of this package is that global variables and functions are automatically identified and exported as needed, making it straightforward to tweak existing code to make use of futures.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "ByteCompile": "TRUE",
+      "URL": "https://future.futureverse.org, https://github.com/futureverse/future",
+      "BugReports": "https://github.com/futureverse/future/issues",
+      "Language": "en-US",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3",
+      "Collate": "'000.bquote.R' '000.import.R' '000.re-exports.R' '009.deprecation.R' '010.tweakable.R' '010.utils-parallelly.R' 'backend_api-01-FutureBackend-class.R' 'backend_api-03.MultiprocessFutureBackend-class.R' 'backend_api-11.ClusterFutureBackend-class.R' 'backend_api-11.MulticoreFutureBackend-class.R' 'backend_api-11.SequentialFutureBackend-class.R' 'backend_api-13.MultisessionFutureBackend-class.R' 'backend_api-ConstantFuture-class.R' 'backend_api-Future-class.R' 'backend_api-FutureRegistry.R' 'backend_api-UniprocessFuture-class.R' 'backend_api-evalFuture.R' 'core_api-cancel.R' 'core_api-future.R' 'core_api-reset.R' 'core_api-resolved.R' 'core_api-value.R' 'delayed_api-futureAssign.R' 'delayed_api-futureOf.R' 'demo_api-mandelbrot.R' 'infix_api-01-futureAssign_OP.R' 'infix_api-02-globals_OP.R' 'infix_api-03-seed_OP.R' 'infix_api-04-stdout_OP.R' 'infix_api-05-conditions_OP.R' 'infix_api-06-lazy_OP.R' 'infix_api-07-label_OP.R' 'infix_api-08-plan_OP.R' 'infix_api-09-tweak_OP.R' 'protected_api-FutureCondition-class.R' 'protected_api-FutureGlobals-class.R' 'protected_api-FutureResult-class.R' 'protected_api-futures.R' 'protected_api-globals.R' 'protected_api-journal.R' 'protected_api-resolve.R' 'protected_api-result.R' 'protected_api-signalConditions.R' 'testme.R' 'utils-basic.R' 'utils-conditions.R' 'utils-connections.R' 'utils-debug.R' 'utils-immediateCondition.R' 'utils-marshalling.R' 'utils-objectSize.R' 'utils-options.R' 'utils-prune_pkg_code.R' 'utils-registerClusterTypes.R' 'utils-rng_utils.R' 'utils-signalEarly.R' 'utils-stealth_sample.R' 'utils-sticky_globals.R' 'utils-tweakExpression.R' 'utils-uuid.R' 'utils-whichIndex.R' 'utils_api-backtrace.R' 'utils_api-capture_journals.R' 'utils_api-futureCall.R' 'utils_api-futureSessionInfo.R' 'utils_api-makeClusterFuture.R' 'utils_api-minifuture.R' 'utils_api-nbrOfWorkers.R' 'utils_api-plan.R' 'utils_api-plan-with.R' 'utils_api-sessionDetails.R' 'utils_api-tweak.R' 'zzz.R'",
+      "NeedsCompilation": "no",
+      "Author": "Henrik Bengtsson [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-7579-5165>)",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
       "Repository": "P3M"
     },
     "gargle": {
@@ -2314,6 +2416,32 @@
       "NeedsCompilation": "no",
       "Author": "Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Winston Chang [aut] (ORCID: <https://orcid.org/0000-0002-1576-2126>), Lionel Henry [aut], Thomas Lin Pedersen [aut, cre] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Kohske Takahashi [aut], Claus Wilke [aut] (ORCID: <https://orcid.org/0000-0002-7470-9261>), Kara Woo [aut] (ORCID: <https://orcid.org/0000-0002-5125-4188>), Hiroaki Yutani [aut] (ORCID: <https://orcid.org/0000-0002-3385-7233>), Dewey Dunnington [aut] (ORCID: <https://orcid.org/0000-0002-9415-4582>), Teun van den Brand [aut] (ORCID: <https://orcid.org/0000-0002-9335-7468>), Posit, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
+      "Repository": "P3M"
+    },
+    "globals": {
+      "Package": "globals",
+      "Version": "0.19.0",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 3.1.2)"
+      ],
+      "Imports": [
+        "codetools"
+      ],
+      "Title": "Identify Global Objects in R Expressions",
+      "Authors@R": "c( person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email=\"henrikb@braju.com\"), person(\"Davis\",\"Vaughan\", role=\"ctb\", email=\"davis@posit.co\"))",
+      "Description": "Identifies global (\"unknown\" or \"free\") objects in R expressions by code inspection using various strategies (ordered, liberal, conservative, or deep-first search). The objective of this package is to make it as simple as possible to identify global objects for the purpose of exporting them in parallel, distributed compute environments.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "ByteCompile": "TRUE",
+      "Language": "en-US",
+      "Encoding": "UTF-8",
+      "URL": "https://globals.futureverse.org, https://github.com/futureverse/globals",
+      "BugReports": "https://github.com/futureverse/globals/issues",
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "no",
+      "Author": "Henrik Bengtsson [aut, cre, cph], Davis Vaughan [ctb]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
       "Repository": "P3M"
     },
     "glue": {
@@ -2646,7 +2774,7 @@
     },
     "highr": {
       "Package": "highr",
-      "Version": "0.11",
+      "Version": "0.12",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Syntax Highlighting for R Source Code",
@@ -2668,9 +2796,9 @@
       "BugReports": "https://github.com/yihui/highr/issues",
       "VignetteBuilder": "knitr",
       "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.1",
+      "RoxygenNote": "7.3.3",
       "NeedsCompilation": "no",
-      "Author": "Yihui Xie [aut, cre] (<https://orcid.org/0000-0003-0645-5666>), Yixuan Qiu [aut], Christopher Gandrud [ctb], Qiang Li [ctb]",
+      "Author": "Yihui Xie [aut, cre] (ORCID: <https://orcid.org/0000-0003-0645-5666>), Yixuan Qiu [aut], Christopher Gandrud [ctb], Qiang Li [ctb]",
       "Maintainer": "Yihui Xie <xie@yihui.name>",
       "Repository": "P3M"
     },
@@ -3308,6 +3436,33 @@
       "Maintainer": "Lionel Henry <lionel@posit.co>",
       "Repository": "P3M"
     },
+    "listenv": {
+      "Package": "listenv",
+      "Version": "0.10.0",
+      "Source": "Repository",
+      "Depends": [
+        "R (>= 3.1.2)"
+      ],
+      "Suggests": [
+        "R.utils",
+        "R.rsp",
+        "markdown"
+      ],
+      "VignetteBuilder": "R.rsp",
+      "Title": "Environments Behaving (Almost) as Lists",
+      "Authors@R": "c(person(\"Henrik\", \"Bengtsson\", role=c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\"))",
+      "Description": "List environments are environments that have list-like properties.  For instance, the elements of a list environment are ordered and can be accessed and iterated over using index subsetting, e.g. 'x <- listenv(a = 1, b = 2); for (i in seq_along(x)) x[[i]] <- x[[i]] ^ 2; y <- as.list(x)'.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "URL": "https://listenv.futureverse.org, https://github.com/futureverse/listenv",
+      "BugReports": "https://github.com/futureverse/listenv/issues",
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "no",
+      "Author": "Henrik Bengtsson [aut, cre, cph]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
+      "Repository": "P3M",
+      "Encoding": "UTF-8"
+    },
     "lmtest": {
       "Package": "lmtest",
       "Version": "0.9-40",
@@ -3644,7 +3799,7 @@
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.3.4",
+      "Version": "2.3.5",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Toolkit for Encryption, Signatures and Certificates Based on OpenSSL",
@@ -3673,6 +3828,36 @@
       "NeedsCompilation": "yes",
       "Author": "Jeroen Ooms [aut, cre] (ORCID: <https://orcid.org/0000-0002-4035-0289>), Oliver Keyes [ctb]",
       "Maintainer": "Jeroen Ooms <jeroenooms@gmail.com>",
+      "Repository": "P3M"
+    },
+    "parallelly": {
+      "Package": "parallelly",
+      "Version": "1.46.1",
+      "Source": "Repository",
+      "Title": "Enhancing the 'parallel' Package",
+      "Imports": [
+        "parallel",
+        "tools",
+        "utils"
+      ],
+      "Suggests": [
+        "commonmark",
+        "base64enc"
+      ],
+      "VignetteBuilder": "parallelly",
+      "Authors@R": "c( person(\"Henrik\", \"Bengtsson\", role = c(\"aut\", \"cre\", \"cph\"), email = \"henrikb@braju.com\", comment = c(ORCID = \"0000-0002-7579-5165\")), person(\"Mike\", \"Cheng\", role = c(\"ctb\"), email = \"mikefc@coolbutuseless.com\") )",
+      "Description": "Utility functions that enhance the 'parallel' package and support the built-in parallel backends of the 'future' package.  For example, availableCores() gives the number of CPU cores available to your R process as given by the operating system, 'cgroups' and Linux containers, R options, and environment variables, including those set by job schedulers on high-performance compute clusters. If none is set, it will fall back to parallel::detectCores(). Another example is makeClusterPSOCK(), which is backward compatible with parallel::makePSOCKcluster() while doing a better job in setting up remote cluster workers without the need for configuring the firewall to do port-forwarding to your local computer.",
+      "License": "LGPL (>= 2.1)",
+      "LazyLoad": "TRUE",
+      "ByteCompile": "TRUE",
+      "URL": "https://parallelly.futureverse.org, https://github.com/futureverse/parallelly",
+      "BugReports": "https://github.com/futureverse/parallelly/issues",
+      "Language": "en-US",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "yes",
+      "Author": "Henrik Bengtsson [aut, cre, cph] (ORCID: <https://orcid.org/0000-0002-7579-5165>), Mike Cheng [ctb]",
+      "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
       "Repository": "P3M"
     },
     "partitions": {
@@ -4088,7 +4273,7 @@
     },
     "ragg": {
       "Package": "ragg",
-      "Version": "1.5.0",
+      "Version": "1.5.1",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Graphic Devices Based on AGG",
@@ -4117,7 +4302,7 @@
       "Config/testthat/edition": "3",
       "Config/usethis/last-upkeep": "2025-04-25",
       "Encoding": "UTF-8",
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "SystemRequirements": "freetype2, libpng, libtiff, libjpeg, libwebp, libwebpmux",
       "NeedsCompilation": "yes",
       "Author": "Thomas Lin Pedersen [cre, aut] (ORCID: <https://orcid.org/0000-0002-5147-4711>), Maxim Shemanarev [aut, cph] (Author of AGG), Tony Juricic [ctb, cph] (Contributor to AGG), Milan Marusinec [ctb, cph] (Contributor to AGG), Spencer Garrett [ctb] (Contributor to AGG), Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
@@ -4184,29 +4369,31 @@
     },
     "readr": {
       "Package": "readr",
-      "Version": "2.1.6",
+      "Version": "2.2.0",
       "Source": "Repository",
       "Title": "Read Rectangular Text Data",
-      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\"), person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Romain\", \"Francois\", role = \"ctb\"), person(\"Jennifer\", \"Bryan\", , \"jenny@posit.co\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-6983-2759\")), person(\"Shelby\", \"Bearrows\", role = \"ctb\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"https://github.com/mandreyel/\", role = \"cph\", comment = \"mio library\"), person(\"Jukka\", \"Jylänki\", role = c(\"ctb\", \"cph\"), comment = \"grisu3 implementation\"), person(\"Mikkel\", \"Jørgensen\", role = c(\"ctb\", \"cph\"), comment = \"grisu3 implementation\") )",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = \"aut\"), person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Romain\", \"Francois\", role = \"ctb\"), person(\"Jennifer\", \"Bryan\", , \"jenny@posit.co\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-6983-2759\")), person(\"Shelby\", \"Bearrows\", role = \"ctb\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"), comment = c(ROR = \"03wc8by49\")), person(\"https://github.com/mandreyel/\", role = \"cph\", comment = \"mio library\"), person(\"Jukka\", \"Jylänki\", role = c(\"ctb\", \"cph\"), comment = \"grisu3 implementation\"), person(\"Mikkel\", \"Jørgensen\", role = c(\"ctb\", \"cph\"), comment = \"grisu3 implementation\") )",
       "Description": "The goal of 'readr' is to provide a fast and friendly way to read rectangular data (like 'csv', 'tsv', and 'fwf').  It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes.",
       "License": "MIT + file LICENSE",
       "URL": "https://readr.tidyverse.org, https://github.com/tidyverse/readr",
       "BugReports": "https://github.com/tidyverse/readr/issues",
       "Depends": [
-        "R (>= 3.6)"
+        "R (>= 4.1)"
       ],
       "Imports": [
-        "cli (>= 3.2.0)",
+        "cli",
         "clipr",
         "crayon",
+        "glue",
         "hms (>= 0.4.1)",
-        "lifecycle (>= 0.2.0)",
+        "lifecycle",
         "methods",
         "R6",
         "rlang",
         "tibble",
         "utils",
-        "vroom (>= 1.6.0)"
+        "vroom (>= 1.7.0)",
+        "withr"
       ],
       "Suggests": [
         "covr",
@@ -4219,7 +4406,6 @@
         "testthat (>= 3.2.0)",
         "tzdb (>= 0.1.1)",
         "waldo",
-        "withr",
         "xml2"
       ],
       "LinkingTo": [
@@ -4230,11 +4416,12 @@
       "Config/Needs/website": "tidyverse, tidyverse/tidytemplate",
       "Config/testthat/edition": "3",
       "Config/testthat/parallel": "false",
+      "Config/usethis/last-upkeep": "2025-11-14",
       "Encoding": "UTF-8",
       "Language": "en-US",
       "RoxygenNote": "7.3.3",
       "NeedsCompilation": "yes",
-      "Author": "Hadley Wickham [aut], Jim Hester [aut], Romain Francois [ctb], Jennifer Bryan [aut, cre] (ORCID: <https://orcid.org/0000-0002-6983-2759>), Shelby Bearrows [ctb], Posit Software, PBC [cph, fnd], https://github.com/mandreyel/ [cph] (mio library), Jukka Jylänki [ctb, cph] (grisu3 implementation), Mikkel Jørgensen [ctb, cph] (grisu3 implementation)",
+      "Author": "Hadley Wickham [aut], Jim Hester [aut], Romain Francois [ctb], Jennifer Bryan [aut, cre] (ORCID: <https://orcid.org/0000-0002-6983-2759>), Shelby Bearrows [ctb], Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>), https://github.com/mandreyel/ [cph] (mio library), Jukka Jylänki [ctb, cph] (grisu3 implementation), Mikkel Jørgensen [ctb, cph] (grisu3 implementation)",
       "Maintainer": "Jennifer Bryan <jenny@posit.co>",
       "Repository": "P3M"
     },
@@ -4325,7 +4512,7 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.1.7",
+      "Version": "1.1.8",
       "Source": "Repository",
       "Type": "Package",
       "Title": "Project Environments",
@@ -4369,14 +4556,14 @@
       "Encoding": "UTF-8",
       "RoxygenNote": "7.3.3",
       "VignetteBuilder": "knitr",
+      "NeedsCompilation": "yes",
       "Config/Needs/website": "tidyverse/tidytemplate",
       "Config/testthat/edition": "3",
       "Config/testthat/parallel": "true",
       "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
-      "NeedsCompilation": "no",
       "Author": "Kevin Ushey [aut, cre] (ORCID: <https://orcid.org/0000-0003-2880-7407>), Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
-      "Repository": "RSPM"
+      "Repository": "P3M"
     },
     "repr": {
       "Package": "repr",
@@ -4828,12 +5015,11 @@
     },
     "scatterplot3d": {
       "Package": "scatterplot3d",
-      "Version": "0.3-44",
+      "Version": "0.3-45",
       "Source": "Repository",
-      "Date": "2023-05-05",
+      "Date": "2026-02-23",
       "Title": "3D Scatter Plot",
-      "Author": "Uwe Ligges <ligges@statistik.tu-dortmund.de>, Martin Maechler, Sarah Schnackenberg",
-      "Maintainer": "Uwe Ligges <ligges@statistik.tu-dortmund.de>",
+      "Authors@R": "c(person(given = \"Uwe\", family = \"Ligges\", role = c(\"aut\", \"cre\"), email = \"ligges@statistik.tu-dortmund.de\"), person(given = \"Martin\", family = \"Maechler\", role = \"aut\"), person(given = \"Sarah\", family = \"Schnackenberg\", role = \"aut\"))",
       "Description": "Plots a three dimensional (3D) point cloud.",
       "Depends": [
         "R (>= 2.7.0)"
@@ -4846,6 +5032,8 @@
         "stats"
       ],
       "NeedsCompilation": "no",
+      "Author": "Uwe Ligges [aut, cre], Martin Maechler [aut], Sarah Schnackenberg [aut]",
+      "Maintainer": "Uwe Ligges <ligges@statistik.tu-dortmund.de>",
       "Repository": "P3M"
     },
     "scidesignR": {
@@ -5212,7 +5400,7 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.3.1",
+      "Version": "1.3.2",
       "Source": "Repository",
       "Type": "Package",
       "Title": "System Native Font Finding",
@@ -5260,7 +5448,7 @@
     },
     "textshaping": {
       "Package": "textshaping",
-      "Version": "1.0.4",
+      "Version": "1.0.5",
       "Source": "Repository",
       "Title": "Bindings to the 'HarfBuzz' and 'Fribidi' Libraries for Text Shaping",
       "Authors@R": "c( person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = c(\"cre\", \"aut\"), comment = c(ORCID = \"0000-0002-5147-4711\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"), comment = c(ROR = \"03wc8by49\")) )",
@@ -5365,6 +5553,47 @@
       "NeedsCompilation": "yes",
       "Author": "Kirill Müller [aut, cre] (ORCID: <https://orcid.org/0000-0002-1416-3412>), Hadley Wickham [aut], Romain Francois [ctb], Jennifer Bryan [ctb], Posit Software, PBC [cph, fnd] (ROR: <https://ror.org/03wc8by49>)",
       "Maintainer": "Kirill Müller <kirill@cynkra.com>",
+      "Repository": "P3M"
+    },
+    "tidyMC": {
+      "Package": "tidyMC",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Title": "Monte Carlo Simulations Made Easy and Tidy",
+      "Authors@R": "c( person(given = \"Stefan\", family = \"Linner\", email = \"stefan.linner97@gmail.com\", role = c(\"aut\", \"cre\", \"cph\")), person(given = \"Ignacio\", family = \"Moreira Lara\", email = \"ignacio.moreira-lara@tu-dortmund.de\", role = c(\"aut\")), person(given = \"Konstantin\", family = \"Lehmann\", email = \"konstantin.lehmann@tu-dortmund.de\", role = c(\"aut\")))",
+      "Description": "Framework to run Monte Carlo simulations over a parameter grid.  Allows to parallelize the simulations.  Generates plots and 'LaTeX' tables summarizing the results from the simulation.",
+      "License": "MIT + file LICENSE",
+      "Imports": [
+        "checkmate",
+        "dplyr",
+        "furrr",
+        "future",
+        "ggplot2",
+        "hms",
+        "kableExtra",
+        "magrittr",
+        "methods",
+        "purrr",
+        "rlang",
+        "stringr",
+        "tibble",
+        "tidyr",
+        "utils"
+      ],
+      "Suggests": [
+        "rmarkdown",
+        "knitr",
+        "testthat (>= 3.0.0)"
+      ],
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "VignetteBuilder": "knitr",
+      "URL": "https://github.com/stefanlinner/tidyMC, https://stefanlinner.github.io/tidyMC/",
+      "BugReports": "https://github.com/stefanlinner/tidyMC/issues",
+      "RoxygenNote": "7.3.2.9000",
+      "NeedsCompilation": "no",
+      "Author": "Stefan Linner [aut, cre, cph], Ignacio Moreira Lara [aut], Konstantin Lehmann [aut]",
+      "Maintainer": "Stefan Linner <stefan.linner97@gmail.com>",
       "Repository": "P3M"
     },
     "tidyr": {

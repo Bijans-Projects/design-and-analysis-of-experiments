@@ -2,138 +2,26 @@
 title: Design and Analysis of Experiments and Observational Studies using R -- A textbook workbook
 ---
 
-## Setup Section - DO NOT RUN
-
-This section documents how the project environment was created and maintained.
-
+## Setup Stuff {.unnumbered}
 
 ```{r}
-if (!requireNamespace("renv", quietly = TRUE)) {
-  install.packages("renv")
-}
-
-# renv::init()
-
-requiredPackages <- c(
-  "abind",
-  "agridat",
-  "broom",
-  "BsMD",
-  "crosstable",
-  "DiagrammeR",
-  "emmeans",
-  "FrF2",
-  "gridExtra",
-  "janitor",
-  "kableExtra",
-  "knitr",
-  "latex2exp",
-  "magic",
-  "patchwork",
-  "pwr",
-  "reticulate",
-  "scidesignR",
-  "tidyverse"
-)
-install.packages(requiredPackages)
-
-for (pkg in requiredPackages) {
-  suppressPackageStartupMessages(
-    library(pkg, character.only = TRUE)
-  )
-}
-
-# Helper Functions
-is_installed <- function(pkg) {
-  requireNamespace(pkg, quietly = TRUE)
-}
-
-is_loaded <- function(pkg) {
-  pkg %in% loadedNamespaces()
-}
-
-package_version <- function(pkg) {
-  if (is_installed(pkg)) as.character(packageVersion(pkg)) else NA_character_
-}
-
-# Build status table
-package_status <- data.frame(
-  Package = requiredPackages,
-  Version = vapply(requiredPackages, package_version, character(1)),
-  Installed = vapply(requiredPackages, is_installed, logical(1)),
-  Loaded = vapply(requiredPackages, is_loaded, logical(1))
-)
-
-kbl(package_status) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
-  
-
-
-
-# renv::snapshot()
-```
-
-## Jupyter Notebook Setup
-
-```{r}
-# Reproducibility / Display Defaults
-options(
-  stringAsFactors = FALSE,
-  repos = c(CRAN = "http://cloud.r-project.org"),
-  warn = 1
-)
-set.seed(123)
-```
-
-## Welcome
-
-```{r}
-# List of all packages used
-requiredPackages <- c(
-  "tidyverse",
-  "knitr",
-  "kableExtra",
-  "reticulate",
-  "janitor",
-  "latex2exp",
-  "gridExtra",
-  "broom",
-  "patchwork",
-  "crosstable",
-  "agridat",
-  "FrF2",
-  "pwr",
-  "emmeans",
-  "DiagrammeR",
-  "abind",
-  "magic",
-  "BsMD",
-  "scidesignR"
-)
-
-# Sort all the packages alphabetically
-requiredPackages <- sort(unique(requiredPackages))
-
-# Display the current status of all the packages: Package Name | Installed Status | Installed Version | Loaded Status -- first sort the packages in Alphabetical Order (A --> Z)
-
-
-
-# Check if package is already installed, if it doesn't, it gets installed. 
-# TODO: Create a "report" that has the list of all packages that are required and if they are installed before starting. Then, update it after they are installed to confirm they are installed, then output the table: Package | Version | Install Status Before | Install Status After
-
-# Loads all required packages
-# TODO: Create a report similar to the installation one, but now it would be Package | Version | Load Status Before | Load Status After
-```
-
-
-
-## Chapter 1
-
-```{r}
+#| lst-label: a02-load-packages
+#| lst-cap: Loading Packages and R Setup
+#| output: false
 
 library(tidyverse)
-library(patchwork)
+library(scidesignR)
+library(knitr)
+library(kableExtra)
+library(countrycode)
+library(skimr)
+library(scidesignR)
+library(tidyMC)
+
+set.seed(4240)
 ```
+
+## Chapter 1
 
 ## CHAPTER 2
 
@@ -178,12 +66,12 @@ summarise(
 barpl <- nhefsdf %>% 
   ggplot(aes(education.code)) +
   geom_bar()
+barpl
 
 histpl <- nhefsdf %>% 
   ggplot(aes(age)) +
   geom_histogram(binwidth = 10, colour = "black", fill = "grey")
-
-barpl + histpl
+histpl
 ```
 
 ### Example 2.3
@@ -206,3 +94,109 @@ expand.grid(subj = 1:3, treat = c("A", "B", "C")) %>%
   head(n = 3)
 ```
 
+## CHAPTER 3
+
+### Example 3.3
+
+```{r}
+#| title: Monte Carlo Simulation
+
+caff <- rtdat$rt[rtdat$group == "CAFF"]
+ncaff <- rtdat$rt[rtdat$group == "NOCAFF"]
+rt1 <- c(caff, ncaff)
+N <- 10000
+result <- numeric(N)
+
+for (i in 1:N) {
+  index <- sample(length(rt1), 
+                  size = length(caff), 
+                  replace = FALSE)
+  result[i] <- median(rt1[index]) - median(rt1[-index])
+}
+
+observed <- median(caff) - median(ncaff)
+phatval <- (sum(result >= observed) + 1) / (N + 1)
+phatval
+#> [1] 0.0038
+```
+
+```{r}
+test_func <- function(param = 0.1, n = 100, x1 = 1, x2 = 2){
+  data <- rnorm(n, mean = param) + x1 + x2
+  stat <- mean(data)
+  stat_2 <- var(data)
+
+  if (x2 == 5){
+    stop("x2 can't be 5!")
+  }
+
+  return(list(mean = stat, var = stat_2))
+}
+
+param_list <- list(param = seq(from = 0, to = 1, by = 0.5),
+                    x1 = 1:2)
+
+set.seed(101)
+
+test_mc <- future_mc(
+  fun = test_func,
+  repetitions = 1000,
+  param_list = param_list,
+  n = 10,
+  x2 = 2,
+  check = TRUE
+)
+```
+
+```{r}
+power_ztest_mc <- function(alpha = 0.05, mu1, mu0, sigma, n) {
+  # Data Generation
+  arg1 <- qnorm(1 - alpha / 2) - (mu1 - mu0) / (sigma / sqrt(n))
+  arg2 <- -1 * qnorm(1 - alpha / 2) -
+    (mu1 - mu0) / (sigma / sqrt(n))
+  
+  
+  # Application of the method
+  power <- (1 - pnorm(arg1) + pnorm(arg2))
+
+  # Evaluation of the result for a single repetition and parameter combination
+  return(list(power = power))
+}
+
+param_list_power_ztest_mc <- 
+  list(
+    mu1 = seq(from = 0.15, to = 0, by = -0.01),
+    n = as.integer(30 + (0:10)*exp(1:11))
+    )
+
+set.seed(101)
+
+test_power_ztest_mc <- future_mc(
+  fun = power_ztest_mc,
+  repetitions = 1,
+  param_list = param_list_power_ztest_mc,
+  alpha = 0.05,
+  mu0 = 0,
+  sigma = 0.2,
+  check = TRUE
+)
+
+summary_default <- summary(test_power_ztest_mc)
+summary_default
+
+mc_ols_plot <- plot(summary(test_power_ztest_mc),
+  which_setup = test_power_ztest_mc$nice_names[1:2])
+
+df_output <- as_tibble(test_power_ztest_mc$output)
+df_output_grouped <- df_output %>% group_by(params)
+df_output_grouped_power <- df_output_grouped %>% 
+  select(power) %>% 
+  summarize(
+    n = n(), 
+    mean = mean(power), 
+    median = median(power), 
+    min = min(power), 
+    max = max(power),
+    sd = sd(power)
+  )
+```

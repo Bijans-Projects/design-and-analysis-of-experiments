@@ -1,0 +1,302 @@
+---
+title: "Power and Sample Size"
+order: 3
+format: 
+    html:
+        code-fold: show
+        code-tools: true
+        smooth-scroll: true
+        anchor-sections: true
+---
+
+## Setup Stuff {.unnumbered}
+
+Let's get started!
+
+```{r}
+#| lst-label: a02-load-packages
+#| lst-cap: Loading Packages and R Setup
+#| output: false
+
+library(tidyverse)
+library(scidesignR)
+library(knitr)
+library(kableExtra)
+library(countrycode)
+library(skimr)
+
+set.seed(4240)
+```
+
+## Exercise 4.1 {#a04-ex-4-1}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+Consider the power function of one-sample z-test shown in Equation (4.1). What is the limit of the power function as $n \rightarrow \infty$? How about when $\mu_1 \rightarrow \mu_0$? What do the restults tell you about the power of the one-sample z-test?
+:::
+ 
+```{r}
+
+pow_ztest <- function(alpha, mu1, mu0, sigma, n) {
+  arg1 <- qnorm(1 - alpha / 2) - (mu1 - mu0) / (sigma / sqrt(n))
+  arg2 <- -1 * qnorm(1 - alpha / 2) -
+    (mu1 - mu0) / (sigma / sqrt(n))
+  return(1 - pnorm(arg1) + pnorm(arg2))
+}
+
+pow_ztest(alpha = 0.05, mu1 = 0.15, mu0 = 0, sigma = 0.2, n = 30) 
+#> [1] 0.9841413
+
+# Increasing n
+previous_result <- 0
+for (x in 0:20) {
+    increasing_by <- 5
+    current_result <- pow_ztest(alpha = 0.05, mu1 = 0.15, mu0 = 0, sigma = 0.2, n = 30 + (x * increasing_by))
+    print(current_result)
+
+    if (current_result == previous_result) {break}
+    previous_result <- current_result
+
+}
+
+# reducing mu1 exponentially
+for (x in 0:20) {
+    decreasing_by <- 0.01
+    print(pow_ztest(alpha = 0.05, mu1 = 0.15 - (x * decreasing_by), mu0 = 0, sigma = 0.2, n = 30))
+    if ((0.15 - (x * decreasing_by)) <= 0) {break}
+}
+
+```
+
+The limit of the power function of the one-sample $z$-test as $n \rightarrow \infty$ is $1$. 
+
+$$
+\begin{align*}
+power & = 1 - \beta \\
+    & = 1 - \Phi\left(z_{1-\alpha / 2} - \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}}\right) + \Phi\left(-z_{1-\alpha / 2} - \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}}\right) \\
+    & & \text{let }\delta_n = \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}} \\
+    & = 1 - \Phi\left(z_{1-\alpha / 2} - \delta_n\right) + \Phi\left(-z_{1-\alpha / 2} - \delta_n\right) \\
+    & & \lim_{n \to \infty} \delta_n \rightarrow \infty \qquad \text{where }\mu_1 \neq \mu_0 \\
+    & = 1 - \Phi(-\infty)+\Phi(-\infty) \\
+    & = 1 - 0 + 0 \\
+    & = 1
+\end{align*}
+$$
+
+*It seems trivial to consider the power as the sample size grows infinitely larger as that means we are approaching the measurement for the population.*
+
+Since Power is the probability that we correctly reject the null (because the alternative is the truth), and as our sample size grows infinitely larger, our statistic (sample mean) approaches the true mean of the population (i.e., it is a consistent estimator).  
+As $n$ grows the standard error ($\sigma / \sqrt{n}$) of our test statistic approaches zero.  
+And the standardized effect size diverges (i.e., approaches infinity), thus $z$ approaches negative infinity.  
+Therefore, $\Phi(-\infty) \rightarrow 0$ and Power approaches 1.
+
+---
+
+The limit of the power function of the one-sample $z$-test as $\mu_1 \rightarrow \mu_0$ is $\alpha = 0.05$.
+
+$$
+\begin{align*}
+\text{power} & = 1 - \beta \\
+    & = 1 - \Phi\left(z_{1-\alpha / 2} - \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}}\right) + \Phi\left(-z_{1-\alpha / 2} - \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}}\right) \\
+    & \color{gray}{\text{let }\delta = \frac{\mu_1 - \mu_0}{\sigma / \sqrt{n}}} \\
+    & = 1 - \Phi\left(z_{1-\alpha / 2} - \delta\right) + \Phi\left(-z_{1-\alpha / 2} - \delta\right) \\
+    & & \\
+    & & \\
+\lim_{\mu_1 \to \mu_0} \text{power} & = 1 - \Phi\left(z_{1-\alpha / 2}\right) + \Phi\left(-z_{1-\alpha / 2}\right) & \color{gray}{\text{since }\lim_{\mu_1 \to \mu_0} \delta \rightarrow 0} \\
+    & = 1 - \Phi\left(\Phi^{-1}(1-\alpha / 2) \right) + \Phi\left(-\Phi^{-1}(1-\alpha / 2) \right) \\
+    & = 1 - (1-\alpha / 2) + \left(1-\Phi\left(\Phi^{-1}(1-\alpha / 2)\right)\right) & \color{gray}{\text{using }\Phi(-x) = 1 - \Phi(x)} \\
+    & = 1 - 1 + \alpha / 2 + \left(1-(1-\alpha / 2)\right) \\
+    & = \alpha / 2 + \alpha / 2 \\
+    & = \alpha
+\end{align*}
+$$
+
+As our alternative mean, $\mu_1$ approaches the null hypothesis', $\mu_0$, the effect size, $\mu_1 - \mu_0$, approaches zero, resulting in the standardized effect size, $\delta_n$, also approaches zero.  
+Therefore, the probability of rejecting the null under the alternative approaches the probability of rejecting the null under the null, which is summarized by $\alpha$. 
+
+NOTE TO SELF: How to read the notation $P_{\text{truth of }H_0}(\text{decision about }H_0)$
+
+- $P_{H_1}(\text{Accept }H_0)$
+  - "The Probability, under the alternative hypothesis, of accepting the null hypothesis."
+  - The alternative is the truth, and we accepted the null
+  - Type II Error 
+  - False Negative
+  - The probability of this is $\beta$ "beta"
+  - Example: "Guilty person gets set free"
+- $P_{H_1}(\text{Reject }H_0)$
+  - "The Probability, under the alternative hypothesis, of rejecting the null hypothesis." 
+  - The alternative is the truth, and we rejected the null (i.e., accepted the truth)
+  - Correct Inference
+  - No error
+  - True Positive
+  - The probability of this is $1-\beta$, also known as **Power**
+- $P_{H_0}(\text{Accept }H_0)$
+  - "The probability, under the null hypothesis, of accepting the null hypothesis." 
+  - The null hypothosis is the truth, and we accepted the null (i.e., accepted the truth)
+  - Correct inference
+  - No error
+  - True Negative
+  - The probability of this is $1-\alpha$
+- $P_{H_0}(\text{Reject }H_0)$
+  - "The probability, under the null hypothesis, of rejecting the null hypothesis." 
+  - The null hypothesis is the truth, and we reject it
+  - Type I Error
+  - False Positive
+  - The probabilty of this is $\alpha$ "alpha"
+  - Example: "Innocent person gets sent to Jail"
+
+```{ojs}
+//| panel: input
+1+1
+
+```
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.3 {#a04-ex-4-3}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.6 {#a04-ex-4-6}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+### (a) Subtitle {#a04-ex-4-6-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (b) TODO: Subtitle {#a04-ex-4-6-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.7 {#a04-ex-4-7}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+### (a) Subtitle {#a04-ex-4-7-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (b) Subtitle {#a04-ex-4-7-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (c) Subtitle {#a04-ex-4-7-c}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.8 {#a04-ex-4-8}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+### (a) Subtitle {#a04-ex-4-8-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (b) Subtitle {#a04-ex-4-8-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.9 {#a04-ex-4-9}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+
+
+## Exercise 4.10 {#a04-ex-4-10}
+::: {.callout-note appearance="simple" title="Exercise Instructions"} 
+TODO: Change the Heading Exercise Number and {ref} -- This is where the instructions for the question go
+:::
+ 
+### (a) Subtitle {#a04-ex-4-10-a}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+□
+:::
+
+### (b) Subtitle {#a04-ex-4-10-b}
+::: {.callout-note appearance="simple" title="Exercise Instructions"}
+TODO: Subquestion instructions
+:::
+
+TODO: Solution goes here
+
+::: {.end-question}
+■
+:::
+

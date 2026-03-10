@@ -19,6 +19,7 @@ website:
         - text: Simulation and Computation
           href: simulation-and-computation.qmd
         - href: comparing-two-treatments.qmd
+        - href: power-and-sample-size.qmd
     right:
       - icon: github
         href: https://github.com/Bijans-Projects/design-and-analysis-of-experiments
